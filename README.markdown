@@ -4,7 +4,7 @@ Conference manager.
 
 ##Bootstrap your environment
 
-  $ [sudo] pip install -r requirements.txt
+    $ [sudo] pip install -r requirements.txt
 
 ##Running tests
 
@@ -12,12 +12,12 @@ Inside the project root, you can use the Django manage.py test file for running 
 
 ###Unit
 
-  $ python manage.py test unit
+    $ python manage.py test unit
 
 ###Functional
 
-  $ python manage.py test functional
+    $ python manage.py test functional
 
 ###Acceptance
 
-  $ python manage.py test acceptance
+    $ python manage.py test acceptance
