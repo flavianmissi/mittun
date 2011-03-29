@@ -1,0 +1,7 @@
+# testing
+nose==1.0.0
+coverage==3.4
+specloud==0.4.2
+-e git+git://github.com/cobrateam/splinter.git#egg=splinter
+
+django==1.3
