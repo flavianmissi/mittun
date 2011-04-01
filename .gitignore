@@ -3,3 +3,4 @@
 *.pyc
 *.sqlite3
 .coverage
+settings_local.py
