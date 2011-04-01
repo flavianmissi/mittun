@@ -5,36 +5,40 @@ from django.conf import settings
 
 curdir = os.path.abspath(os.path.dirname(__file__))
 
-def run_tests(test_labels, verbosity=2, interactive=True, extra_tests=[]):
-    settings.DEBUG = False
+class SpecloudTestRunner(object):
 
-    nose_argv = [
-        'nosetests', '-s', '--verbosity=2', '--exe', '--with-coverage', '--cover-inclusive'
-    ]
-    package = os.path.split(os.path.dirname(__file__))[-1]
-    app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django']
+    def __init__(self, verbosity=2, **kwargs):
+        self.verbosity = verbosity
+        settings.DEBUG = False
 
-    nose_argv.extend(map(lambda name: "--cover-package=%s" % name, app_names))
-    nose_argv.extend(map(lambda name: "--cover-package=%s.%s" % (package, name), app_names))
+    def run_tests(self, test_labels, extra_tests=[], **kwargs):
+        nose_argv = [
+            'specloud', '-s', '--verbosity=%d' % self.verbosity, '--exe', '--with-coverage', '--cover-inclusive'
+        ]
+        package = os.path.split(os.path.dirname(__file__))[-1]
+        app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django']
 
-    nose_argv.append('--nologcapture')
+        nose_argv.extend(map(lambda name: "--cover-package=%s" % name, app_names))
+        nose_argv.extend(map(lambda name: "--cover-package=%s.%s" % (package, name), app_names))
 
-    if sys.argv[-1] in ('unit', 'functional', 'integration'):
-        kind = sys.argv[-1]
-        apps = map(lambda app: "%s/tests/%s" % (app, kind), app_names)
-    else:
-        apps = app_names
+        nose_argv.append('--nologcapture')
 
-    nose_argv.extend(apps)
+        if sys.argv[-1] in ('unit', 'functional', 'integration'):
+            kind = sys.argv[-1]
+            apps = map(lambda app: "%s/tests/%s" % (app, kind), app_names)
+        else:
+            apps = app_names
 
-    try:
-        os.remove(os.path.join(curdir, '.coverage'))
-    except:
-        pass
+        nose_argv.extend(apps)
 
-    passed = nose.run(argv=nose_argv)
+        try:
+            os.remove(os.path.join(curdir, '.coverage'))
+        except:
+            pass
 
-    if passed:
-        return 0
-    else:
-        return 1
+        passed = nose.run(argv=nose_argv)
+
+        if passed:
+            return 0
+        else:
+            return 1
