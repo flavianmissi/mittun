@@ -1,6 +1,6 @@
 import os
 import sys
-import nose
+import subprocess
 from django.conf import settings
 
 curdir = os.path.abspath(os.path.dirname(__file__))
@@ -12,16 +12,16 @@ class SpecloudTestRunner(object):
         settings.DEBUG = False
 
     def run_tests(self, test_labels, extra_tests=[], **kwargs):
-        nose_argv = [
+        specloud_argv = [
             'specloud', '-s', '--verbosity=2', '--exe', '--with-coverage', '--cover-inclusive'
         ]
         package = os.path.split(os.path.dirname(__file__))[-1]
         app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django']
 
-        nose_argv.extend(map(lambda name: "--cover-package=%s" % name, app_names))
-        nose_argv.extend(map(lambda name: "--cover-package=%s.%s" % (package, name), app_names))
+        specloud_argv.extend(map(lambda name: "--cover-package=%s" % name, app_names))
+        specloud_argv.extend(map(lambda name: "--cover-package=%s.%s" % (package, name), app_names))
 
-        nose_argv.append('--nologcapture')
+        specloud_argv.append('--nologcapture')
 
         if sys.argv[-1] in ('unit', 'functional', 'integration'):
             kind = sys.argv[-1]
@@ -29,16 +29,11 @@ class SpecloudTestRunner(object):
         else:
             apps = app_names
 
-        nose_argv.extend(apps)
+        specloud_argv.extend(apps)
 
         try:
             os.remove(os.path.join(curdir, '.coverage'))
         except:
             pass
 
-        passed = nose.run(argv=nose_argv)
-
-        if passed:
-            return 0
-        else:
-            return 1
+        return subprocess.call(specloud_argv)
