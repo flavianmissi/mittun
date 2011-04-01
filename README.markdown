@@ -6,6 +6,10 @@ Conference manager.
 
     $ [sudo] pip install -r requirements.txt
 
+###Dependencies on Ubuntu 10.10
+
+    $ sudo apt-get install python-dev python-mysqldb
+
 ##Running tests
 
 Inside the project root, you can use the Django manage.py test file for running tests:
@@ -21,6 +25,3 @@ Inside the project root, you can use the Django manage.py test file for running 
 ###Acceptance
 
     $ python manage.py test acceptance
-
-##Enviroment configuration (Ubuntu)
-    $ sudo apt-get install python-dev python-mysqldb
