@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'events',
+    'south',
 )
 
 TEST_RUNNER = 'specloud_runner.SpecloudTestRunner'
