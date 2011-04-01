@@ -4,4 +4,6 @@ coverage==3.4
 specloud==0.4.2
 -e git+git://github.com/cobrateam/splinter.git#egg=splinter
 
+# development
+MySQL-Python==1.2.3
 django==1.3
