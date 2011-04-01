@@ -13,7 +13,7 @@ class SpecloudTestRunner(object):
 
     def run_tests(self, test_labels, extra_tests=[], **kwargs):
         nose_argv = [
-            'specloud', '-s', '--verbosity=%d' % self.verbosity, '--exe', '--with-coverage', '--cover-inclusive'
+            'specloud', '-s', '--verbosity=2', '--exe', '--with-coverage', '--cover-inclusive'
         ]
         package = os.path.split(os.path.dirname(__file__))[-1]
         app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django']
