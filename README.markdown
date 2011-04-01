@@ -21,3 +21,6 @@ Inside the project root, you can use the Django manage.py test file for running 
 ###Acceptance
 
     $ python manage.py test acceptance
+
+##Enviroment configuration (Ubuntu)
+    $ sudo apt-get install python-dev python-mysqldb
