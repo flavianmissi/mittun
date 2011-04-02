@@ -6,7 +6,8 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'mittun.views.home', name='home'),
+    (r'^$', 'events.views.index'),
+    (r'^event/(?P<event_id>\d+)/?$', 'events.views.event')
     # url(r'^mittun/', include('mittun.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
