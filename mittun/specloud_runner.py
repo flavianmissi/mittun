@@ -16,7 +16,7 @@ class SpecloudTestRunner(object):
             'specloud', '-s', '--verbosity=2', '--exe', '--with-coverage', '--cover-inclusive'
         ]
         package = os.path.split(os.path.dirname(__file__))[-1]
-        app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django']
+        app_names = [app for app in settings.INSTALLED_APPS if not app.startswith("django") and app != 'lettuce.django' and app not in settings.SKIP_TESTS]
 
         specloud_argv.extend(map(lambda name: "--cover-package=%s" % name, app_names))
         specloud_argv.extend(map(lambda name: "--cover-package=%s.%s" % (package, name), app_names))

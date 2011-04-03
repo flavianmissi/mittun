@@ -127,6 +127,10 @@ INSTALLED_APPS = (
     'south',
 )
 
+SKIP_TESTS = (
+    'south',
+)
+
 TEST_RUNNER = 'specloud_runner.SpecloudTestRunner'
 
 # A sample logging configuration. The only tangible logging
