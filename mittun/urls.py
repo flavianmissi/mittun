@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     (r'^$', 'events.views.index'),
+    (r'^index/?$', 'events.views.index'),
     (r'^event/(?P<event_id>\d+)/?$', 'events.views.event')
     # url(r'^mittun/', include('mittun.foo.urls')),
 
