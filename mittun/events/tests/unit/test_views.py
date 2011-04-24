@@ -3,6 +3,8 @@ from django.test.client import Client
 from nose.tools import assert_equals
 
 class EventsViewsTestCase(unittest.TestCase):
+    fixtures = ['events.json']
+
     def setUp(self):
         self.client = Client()
 
