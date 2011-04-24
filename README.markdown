@@ -30,16 +30,19 @@ Just run on terminal:
 
 ##Running tests
 
-Inside the project root, you can use the Django manage.py test file for running tests:
+Inside the project root, you can use the Makefile for running tests:
 
 ###Unit
 
-    $ python manage.py test unit
+    $ make unit
 
 ###Functional
 
-    $ python manage.py test functional
+    $ make functional
 
 ###Acceptance
 
-    $ python manage.py test acceptance
+    $ make acceptance
+
+###All tests
+    $ make tests
