@@ -4,7 +4,7 @@ clean:
 	@find . -name "*.swp" -exec rm -f {} \;
 	@echo 'Done!'
 
-test:
+tests:
 	@echo "Running all tests..."
 	@python manage.py test
 
