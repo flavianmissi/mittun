@@ -12,7 +12,6 @@ class EventsModelsTestCase(unittest.TestCase):
     def test_should_not_save_without_an_event_date(self):
         event = Event(name="", description="Teste", url="none.com", location="Home", address="Whatever Street, 1542")
         event.save()
-        event.delete()
 
     @raises(IntegrityError)
     def test_should_not_save_without_a_name(self):
