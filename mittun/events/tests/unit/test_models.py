@@ -1,11 +1,10 @@
-import unittest
 from datetime import date
 from django.db import IntegrityError
-#from django.test import TestCase
 from mittun.events.models import Event
 from nose.tools import raises, assert_equals
+from unittest import TestCase
 
-class EventsModelsTestCase(unittest.TestCase):
+class EventsModelsTestCase(TestCase):
     fixtures = ['events.json']
 
     @raises(IntegrityError)
