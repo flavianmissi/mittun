@@ -2,15 +2,13 @@ import os
 import sys
 import subprocess
 from django.conf import settings
-from django.test.simple import DjangoTestSuiteRunner
 
 curdir = os.path.abspath(os.path.dirname(__file__))
 
-class SpecloudTestRunner(DjangoTestSuiteRunner):
+class SpecloudTestRunner(object):
 
     def __init__(self, verbosity=2, **kwargs):
         self.verbosity = verbosity
-        self.interactive = True
         settings.DEBUG = False
 
     def run_tests(self, test_labels, extra_tests=[], **kwargs):
@@ -37,8 +35,5 @@ class SpecloudTestRunner(DjangoTestSuiteRunner):
             os.remove(os.path.join(curdir, '.coverage'))
         except:
             pass
-
-        old_config = self.setup_databases()
-        self.teardown_databases(old_config)
 
         return subprocess.call(specloud_argv)
