@@ -39,6 +39,7 @@ class SpecloudTestRunner(DjangoTestSuiteRunner):
             pass
 
         old_config = self.setup_databases()
+        result = subprocess.call(specloud_argv)
         self.teardown_databases(old_config)
 
-        return subprocess.call(specloud_argv)
+        return result
