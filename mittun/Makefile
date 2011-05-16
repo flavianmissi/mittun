@@ -1,22 +1,25 @@
+dependencies:
+	@pip install -r ../requirements.txt
+
 clean:
 	@echo "Removing trash..."
 	@find . -name "*.pyc" -exec rm -f {} \;
 	@find . -name "*.swp" -exec rm -f {} \;
 	@echo 'Done!'
 
-tests:
+tests: clean
 	@echo "Running all tests..."
 	@python manage.py test
 
-unit:
+unit: clean
 	echo "Running unit tests..."
 	@python manage.py test unit
 
-functional:
+functional: clean
 	@echo "Running functional tests..."
 	@python manage.py test functional
 
-acceptance:
+acceptance: clean
 	@echo "Running acceptance tests..."
 	@python manage.py test acceptance
 
