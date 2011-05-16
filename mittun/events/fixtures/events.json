@@ -4,7 +4,7 @@
         "model" : "events.event",
         "fields" : {
             "name" : "Event 1",
-            "date" : 2011-04-04
+            "date" : "2011-04-04"
         }
     }
 ]
