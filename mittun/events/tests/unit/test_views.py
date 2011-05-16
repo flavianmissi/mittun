@@ -1,17 +1,13 @@
-import unittest
-from django.test.client import Client
+from django.test import TestCase
 from nose.tools import assert_equals
 
-class EventsViewsTestCase(unittest.TestCase):
+class EventsViewsTestCase(TestCase):
     fixtures = ['events.json']
 
-    def setUp(self):
-        self.client = Client()
-
-    def test_index(self):
-        response = self.client.get('index/')
+    def test_should_get_index_and_be_success(self):
+        response = self.client.get('index')
         assert_equals(response.status_code, 200)
 
-    def test_event(self):
+    def test_should_get_an_inexistent_event_and_get_an_404_status(self):
         response = self.client.get('event/11359')
         assert_equals(response.status_code, 404)

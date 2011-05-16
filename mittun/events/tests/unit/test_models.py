@@ -2,7 +2,7 @@ from datetime import date
 from django.db import IntegrityError
 from mittun.events.models import Event
 from nose.tools import raises, assert_equals
-from unittest import TestCase
+from django.test import TestCase
 
 class EventsModelsTestCase(TestCase):
     fixtures = ['events.json']
