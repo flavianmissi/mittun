@@ -9,19 +9,19 @@ clean:
 
 tests: clean
 	@echo "Running all tests..."
-	@python manage.py test
+	@python -Wall manage.py test
 
 unit: clean
 	echo "Running unit tests..."
-	@python manage.py test unit
+	@python -Wall manage.py test unit
 
 functional: clean
 	@echo "Running functional tests..."
-	@python manage.py test functional
+	@python -Wall manage.py test functional
 
 acceptance: clean
 	@echo "Running acceptance tests..."
-	@python manage.py test acceptance
+	@python -Wall manage.py test acceptance
 
 run:
 	@python manage.py runserver
