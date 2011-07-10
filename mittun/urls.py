@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     (r'^$', 'mittun.events.views.index'),
     (r'^index/?$', 'mittun.events.views.index'),
-    (r'^event/(?P<event_id>\d+)/?$', 'mittun.events.views.event')
+    url(r'^events/', include('mittun.events.urls')),
     # url(r'^mittun/', include('mittun.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

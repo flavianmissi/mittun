@@ -1,5 +1,4 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
 from mittun.events.models import Event
 
 def index(request):
@@ -9,3 +8,6 @@ def index(request):
 def event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
     return render_to_response('event.html', {'event' : event})
+
+def add(request):
+    return render_to_response('add.html')
