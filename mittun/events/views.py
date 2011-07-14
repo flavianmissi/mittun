@@ -10,4 +10,8 @@ def event(request, event_id):
     return render_to_response('event.html', {'event' : event})
 
 def add(request):
-    return render_to_response('add.html')
+    if request.method == "POST":
+        event = Event(request.POST)
+        return render_to_response('add.html')
+    else:
+        return render_to_response('add.html')
