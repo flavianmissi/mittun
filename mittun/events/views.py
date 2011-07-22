@@ -19,7 +19,6 @@ def add(request):
         form = EventForm(request.POST)
         if form.is_valid():
             form.save()
-            print form.cleaned_data
             return HttpResponseRedirect('/')
     else:
         form = EventForm()

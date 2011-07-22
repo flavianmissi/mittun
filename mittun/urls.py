@@ -7,8 +7,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
     # Examples:
-    (r'^$', 'mittun.events.views.index'),
-    (r'^index/?$', 'mittun.events.views.index'),
+    url(r'^$', 'mittun.events.views.index', name="index"),
+    url(r'^index/?$', 'mittun.events.views.index', name="index"),
     url(r'^events/', include('mittun.events.urls')),
     # url(r'^mittun/', include('mittun.foo.urls')),
 

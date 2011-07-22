@@ -1,7 +1,6 @@
-from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import patterns, url
 
 urlpatterns = patterns('',
-    (r'^(?P<event_id>\d+)/?$', 'mittun.events.views.event'),
-    (r'^(?P<event_id>\d+)/?$', 'mittun.events.views.event'),
-    (r'^add/?$', 'mittun.events.views.add')
+    url(r'^(?P<event_id>\d+)/?$', 'mittun.events.views.event', name="view_event"),
+    url(r'^add/?$', 'mittun.events.views.add', name="add_event")
 )
