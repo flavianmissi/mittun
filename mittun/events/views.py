@@ -2,8 +2,8 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
-from mittun.events.models import Event
-from mittun.events.forms import EventForm
+from events.models import Event
+from events.forms import EventForm
 
 def index(request):
     events = Event.objects.all()
