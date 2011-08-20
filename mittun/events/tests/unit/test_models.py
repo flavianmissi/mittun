@@ -46,6 +46,7 @@ class EventsModelsTestCase(TestCase):
         event = Event.objects.get(pk=1)
         assert_equals(event.__unicode__(), event.name)
 
-    def test_should_return_event_bar_1_when_asked_for_the_absolute_url_of_an_event(self):
+    def test_should_return_event_bar_the_event_name_when_asked_for_the_absolute_url_of_an_event(self):
         event = Event.objects.get(pk=1)
-        event.get_absolute_url()
+        expected_url = 'event/%s' % event.slug
+        assert_equals(expected_url, event.get_absolute_url())
