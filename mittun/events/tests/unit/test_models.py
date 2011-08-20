@@ -4,11 +4,15 @@ from mittun.events.models import Event
 from nose.tools import raises, assert_equals
 from django.test import TestCase
 
+
 class EventsModelsTestCase(TestCase):
     fixtures = ['events.json']
 
     def test_should_have_the_field_name(self):
         self.assertFieldIn('name', Event)
+
+    def test_should_have_the_field_slug(self):
+        self.assertFieldIn('slug', Event)
 
     def test_should_have_the_field_description(self):
         self.assertFieldIn('description', Event)
