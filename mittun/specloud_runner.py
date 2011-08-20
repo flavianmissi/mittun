@@ -25,7 +25,7 @@ class SpecloudTestRunner(DjangoTestSuiteRunner):
 
         specloud_argv.append('--nologcapture')
 
-        if sys.argv[-1] in ('unit', 'functional', 'integration'):
+        if sys.argv[-1] in ('unit', 'functional', 'acceptance'):
             kind = sys.argv[-1]
             apps = map(lambda app: "%s/tests/%s" % (app, kind), app_names)
         else:
