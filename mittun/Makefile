@@ -12,7 +12,7 @@ tests: clean
 	@python -Wall manage.py test
 
 unit: clean
-	echo "Running unit tests..."
+	@echo "Running unit tests..."
 	@python -Wall manage.py test unit
 
 functional: clean
