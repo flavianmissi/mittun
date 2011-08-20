@@ -7,6 +7,27 @@ from django.test import TestCase
 class EventsModelsTestCase(TestCase):
     fixtures = ['events.json']
 
+    def test_should_have_the_field_name(self):
+        self.assertFieldIn('name', Event)
+
+    def test_should_have_the_field_description(self):
+        self.assertFieldIn('description', Event)
+
+    def test_should_have_the_field_url(self):
+        self.assertFieldIn('url', Event)
+
+    def test_should_have_the_field_date(self):
+        self.assertFieldIn('date', Event)
+
+    def test_should_have_the_field_location(self):
+        self.assertFieldIn('location', Event)
+
+    def test_should_have_the_field_address(self):
+        self.assertFieldIn('address', Event)
+
+    def assertFieldIn(self, field_name, model):
+        self.assertIn(field_name, [field.name for field in model._meta.fields])
+
     @raises(IntegrityError)
     def test_should_not_save_without_an_event_date(self):
         event = Event(name="", description="Teste", url="none.com", location="Home", address="Whatever Street, 1542")
@@ -20,3 +41,7 @@ class EventsModelsTestCase(TestCase):
     def test_should_return_the_name_of_the_event_when_call_an_event_directly(self):
         event = Event.objects.get(pk=1)
         assert_equals(event.__unicode__(), event.name)
+
+    def test_should_return_event_bar_1_when_asked_for_the_absolute_url_of_an_event(self):
+        event = Event.objects.get(pk=1)
+        event.get_absolute_url()
