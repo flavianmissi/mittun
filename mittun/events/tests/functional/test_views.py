@@ -1,10 +1,14 @@
 from datetime import date
+from nose.tools import assert_equals
+
 from django.core.urlresolvers import reverse
 from django.test import TestCase
-from nose.tools import assert_equals
+
 from events.models import Event
 
+
 class EventsViewsTestCase(TestCase):
+
     fixtures = ['events.json']
 
     def test_should_get_index_and_be_success(self):
@@ -25,5 +29,14 @@ class EventsViewsTestCase(TestCase):
 
     def test_should_create_a_new_event(self):
         total = Event.objects.all().count()
-        self.client.post(reverse('add_event'), {'name': 'Dojo', 'description': 'Dojo', 'date': date.today(), 'location': 'location', 'address': 'address'})
+
+        post_data = {
+            'name': 'Dojo',
+            'description': 'Dojo',
+            'date': date.today(),
+            'location': 'location',
+            'address': 'address'
+        }
+
+        self.client.post(reverse('add_event'), post_data)
         assert_equals(Event.objects.all().count(), total+1)
