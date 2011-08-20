@@ -21,6 +21,6 @@ class Event(models.Model):
 
 
 def gera_slug_automaticamente(instance, *args, **kwargs):
-    instance.slug = slugify(instance.nome + instance.versao)
+    instance.slug = slugify(instance.name)
 
 pre_save.connect(gera_slug_automaticamente, sender=Event)
