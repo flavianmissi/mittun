@@ -17,7 +17,7 @@ class Event(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return 'event/%i' % self.id
+        return 'event/%s' % self.slug
 
 
 def gera_slug_automaticamente(instance, *args, **kwargs):
