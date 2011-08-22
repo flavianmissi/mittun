@@ -3,8 +3,8 @@ dependencies:
 
 clean:
 	@echo "Removing trash..."
-	@find . -name "*.pyc" -exec rm -f {} \;
-	@find . -name "*.swp" -exec rm -f {} \;
+	@find . -name "*.pyc" -delete
+	@find . -name "*.swp" -delete
 	@echo 'Done!'
 
 tests: clean
