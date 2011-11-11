@@ -10,16 +10,19 @@ class EventsViewsTestCase(TestCase):
 
     fixtures = ['events.json']
 
+    def setUp(self):
+        self.event_slug = Event.objects.all()[0].slug
+
     def test_should_get_index_and_be_success(self):
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
 
     def test_should_get_an_inexistent_event_and_get_an_404_status(self):
-        response = self.client.get(reverse('view_event', args=[3]))
+        response = self.client.get(reverse('event_detail', args=['absent-event']))
         self.assertEqual(response.status_code, 404)
 
     def test_should_get_an_event_and_be_success(self):
-        response = self.client.get(reverse('view_event', args=[1]))
+        response = self.client.get(reverse('event_detail', args=[self.event_slug]))
         self.assertEqual(response.status_code, 200)
 
     def test_should_get_add_page_and_be_success(self):
@@ -39,8 +42,8 @@ class EventsViewsTestCase(TestCase):
         }
 
         self.client.post(reverse('add_event'), post_data)
-        self.assertEqual(Event.objects.all().count(), total+1)
+        self.assertGreater(Event.objects.all().count(), total)
 
     def test_should_get_event_details_page_and_be_success(self):
-        response = self.client.get(reverse('view_event'), args=[Event.objects.all()[0].id])
+        response = self.client.get(reverse('event_detail', args=[self.event_slug]))
         self.assertEqual(200, response.status_code)

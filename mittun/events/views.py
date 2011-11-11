@@ -1,18 +1,15 @@
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 
 from events.models import Event
 from events.forms import EventForm
 
 
-def index(request):
-    events = Event.objects.all()
-    return render_to_response('index.html', {'events' : events})
+class IndexView(ListView):
 
-
-def event(request, event_id):
-    event = get_object_or_404(Event, pk=event_id)
-    return render_to_response('event.html', {'event' : event})
+    model = Event
+    template_name = 'index.html'
+    context_object_name = 'events'
 
 
 class CreateEvent(CreateView):

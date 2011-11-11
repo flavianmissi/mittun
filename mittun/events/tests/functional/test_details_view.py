@@ -52,4 +52,4 @@ class EventDetailsViewTestCase(TestCase):
     def test_should_get_the_detail_page_with_a_non_fake_request_and_be_success(self):
         client = Client()
         response = client.get(reverse('event_detail', args=[self.event.slug]))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(200, response.status_code)
