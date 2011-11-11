@@ -1,0 +1,31 @@
+body {
+    background: url(../img/content_repeat.jpg) repeat-x;
+}
+.container_16 {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 25px;
+}
+
+h1 {
+    color: #4b4b4b;
+    font-family: Tahoma;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+h2 {
+    color: #393939;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #92b22c;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-bottom: 10px;
+}

@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}css/index.css" />
+{% endblock %}
+
 {% block body %}
-<h1>Mittun - Conference Manager</h1>
-<h2>Events</h2>
+<div class="container_16">
+    <div class="grid_16">
+        <h1>Mittun - Conference Manager</h1>
+        <h2>Events</h2>
 
-<div>
-    <dl>
-        {% for event in events %}
-            <dt>{{ event.name }}</dt>
-            <dd>{{ event.date }}</dd>
-        {% endfor %}
-    </dl>
+        <div>
+            <dl>
+                {% for event in events %}
+                    <dt>{{ event.name }}</dt>
+                    <dd>{{ event.date }}</dd>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

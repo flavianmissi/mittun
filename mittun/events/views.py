@@ -1,5 +1,4 @@
 from django.views.generic import ListView, DetailView, CreateView
-from django.shortcuts import render_to_response
 
 from events.models import Event
 from events.forms import EventForm
