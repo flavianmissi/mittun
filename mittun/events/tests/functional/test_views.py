@@ -47,3 +47,14 @@ class EventsViewsTestCase(TestCase):
     def test_should_get_event_details_page_and_be_success(self):
         response = self.client.get(reverse('event_detail', args=[self.event_slug]))
         self.assertEqual(200, response.status_code)
+
+    def test_should_create_an_event_with_a_html_description_and_render_it_in_the_template(self):
+       event = Event.objects.create(name='Dojo',
+                                    description='<h2>Dojo</h2><p>Python Dojo</p>',
+                                    date=date.today(),
+                                    location='location',
+                                    address='address',
+                                    slug='python-dojo',
+                                   )
+       response = self.client.get(reverse('event_detail', args=[event.slug]))
+       self.assertIn(event.description, response.content)
