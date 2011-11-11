@@ -1,8 +1,5 @@
-from django.views.generic import ListView, DetailView
-from django.views.decorators.csrf import csrf_protect
+from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render_to_response, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.template import RequestContext
 
 from events.models import Event
 from events.forms import EventForm
@@ -18,23 +15,17 @@ def event(request, event_id):
     return render_to_response('event.html', {'event' : event})
 
 
-@csrf_protect
-def add(request):
-    if request.method == "POST":
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
-    else:
-        form = EventForm()
+class CreateEvent(CreateView):
 
-    return render_to_response('add.html', {'form': form}, context_instance=RequestContext(request))
+    template_name = 'add.html'
+    form_class = EventForm
 
 
 class EventsListView(ListView):
     model = Event
     template_name = 'events_list.html'
     context_object_name = 'events'
+
 
 class EventDetailView(DetailView):
     model = Event
