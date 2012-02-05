@@ -37,19 +37,6 @@ class EventDetailsViewTestCase(TestCase):
         response = EventDetailView.as_view()(self.request, slug=self.event.slug)
         self.assertTrue('event' in response.context_data.keys())
 
-    def test_template_must_have_the_event_name_in_content(self):
+    def text_context_object_must_have_an_instance_of_event_model(self):
         response = EventDetailView.as_view()(self.request, slug=self.event.slug)
-        self.assertTrue(self.event.name in response.rendered_content)
-
-    def test_template_must_have_the_event_date_in_content(self):
-        response = EventDetailView.as_view()(self.request, slug=self.event.slug)
-        self.assertTrue(self.event.date.strftime('%b. %d, %Y') in response.rendered_content)
-
-    def test_template_must_have_the_event_description_in_content(self):
-        response = EventDetailView.as_view()(self.request, slug=self.event.slug)
-        self.assertTrue(self.event.description in response.rendered_content)
-
-    def test_should_get_the_detail_page_with_a_non_fake_request_and_be_success(self):
-        client = Client()
-        response = client.get(reverse('event_detail', args=[self.event.slug]))
-        self.assertEqual(200, response.status_code)
+        self.assertIsInstance(response.context_data['event'], Event)
