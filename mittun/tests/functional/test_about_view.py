@@ -2,9 +2,8 @@
 
 from datetime import date
 
-from django.core.urlresolvers import reverse
 from django.test import TestCase
-from django.test.client import RequestFactory, Client
+from django.test.client import RequestFactory
 
 from events.views import EventDetailView
 from events.models import Event
@@ -13,7 +12,7 @@ from events.models import Event
 class EventDetailsViewTestCase(TestCase):
 
     def setUp(self):
-        self.request = RequestFactory().get('event_details')
+        self.request = RequestFactory().get('abouts')
         self.event = Event.objects.create(
             name= 'Dojo',
             description= 'Dojo is a ...',
@@ -29,9 +28,9 @@ class EventDetailsViewTestCase(TestCase):
         response = EventDetailView.as_view()(self.request, slug=self.event.slug)
         self.assertEqual(response.status_code, 200)
 
-    def test_details_view_should_use_event_detail_template(self):
+    def test_details_view_should_use_about_template(self):
         response = EventDetailView.as_view()(self.request, slug=self.event.slug)
-        self.assertTrue('event_detail.html' in response.template_name)
+        self.assertTrue('about.html' in response.template_name)
 
     def test_context_object_must_be_called_event(self):
         response = EventDetailView.as_view()(self.request, slug=self.event.slug)

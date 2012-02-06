@@ -7,9 +7,9 @@ class IndexView(ListView):
 
     model = Event
     template_name = 'index.html'
-    context_object_name = 'events'
+    context_object_name = 'event'
 
 
-class EventDetailView(DetailView):
+class AboutView(DetailView):
     model = Event
-    template_name = 'event_detail.html'
+    template_name = 'about.html'
