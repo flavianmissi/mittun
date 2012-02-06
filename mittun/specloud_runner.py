@@ -6,6 +6,7 @@ from django.test.simple import DjangoTestSuiteRunner
 
 curdir = os.path.abspath(os.path.dirname(__file__))
 
+
 class SpecloudTestRunner(DjangoTestSuiteRunner):
 
     def __init__(self, verbosity=2, **kwargs):
