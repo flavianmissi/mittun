@@ -12,6 +12,7 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     address = models.CharField(max_length=250)
     slug = models.SlugField()
+    logo = models.ImageField(upload_to='event_logo', blank=True, default='')
 
     def __unicode__(self):
         return self.name
@@ -22,5 +23,6 @@ class Event(models.Model):
 
 def gera_slug_automaticamente(instance, *args, **kwargs):
     instance.slug = slugify(instance.name)
+
 
 pre_save.connect(gera_slug_automaticamente, sender=Event)
