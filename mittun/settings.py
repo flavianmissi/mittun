@@ -47,7 +47,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join('PROJECT_ROOT', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -114,6 +114,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -131,6 +132,7 @@ INSTALLED_APPS = (
 SKIP_TESTS = (
     'south',
 )
+SOUTH_TESTS_MIGRATE = False
 
 TEST_RUNNER = 'specloud_runner.SpecloudTestRunner'
 
