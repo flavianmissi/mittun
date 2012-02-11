@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^index/?$', IndexView.as_view(), name="index"),
     url(r'^about/?$', AboutView.as_view(), name="about"),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^bootstrap/?$', include('events.urls'))
 )
 
 urlpatterns += staticfiles_urlpatterns()

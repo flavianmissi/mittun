@@ -110,9 +110,15 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT, "templates"),
+    os.path.join(PROJECT_ROOT, "events/templates"),
 )
 
-INSTALLED_APPS = (
+TESTABLE_APPS = (
+    'events',
+)
+
+INSTALLED_APPS = TESTABLE_APPS
+INSTALLED_APPS += (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,7 +130,6 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'events',
     'south',
     'django_nose',
 )

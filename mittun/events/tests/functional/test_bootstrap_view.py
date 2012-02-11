@@ -1,4 +1,5 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, RequestFactory, Client
+from django.core.urlresolvers import reverse
 
 from events.forms import BootstrapForm
 from events.models import Event
@@ -25,3 +26,13 @@ class BootstrapViewTestCase(TestCase):
 
     def test_should_point_to_event_form(self):
         self.assertEqual(BootstrapView.form_class, BootstrapForm)
+
+
+class BootstrapViewUrlsTestCase(TestCase):
+
+    def setUp(self):
+        client = Client()
+        self.response = client.get(reverse('bootstrap'))
+
+    def test_should_request_bootstrap_url_and_get_a_200_status_code(self):
+        self.assertEqual(200, self.response.status_code)
