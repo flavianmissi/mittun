@@ -110,7 +110,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_ROOT, "templates"),
-    os.path.join(PROJECT_ROOT, "templates/events"),
 )
 
 INSTALLED_APPS = (
@@ -125,6 +124,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'django_nose',
     'events',
     'south',
 )
@@ -134,7 +134,7 @@ SKIP_TESTS = (
 )
 SOUTH_TESTS_MIGRATE = False
 
-TEST_RUNNER = 'specloud_runner.SpecloudTestRunner'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
