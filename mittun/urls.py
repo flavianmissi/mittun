@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', IndexView.as_view()),
     url(r'^index/?$', IndexView.as_view(), name="index"),
-    url(r'^about/(?P<slug>[a-zA-Z-0-9\_]+)/?$', AboutView.as_view(), name="about"),
+    url(r'^about/?$', AboutView.as_view(), name="about"),
     url(r'^admin/', include(admin.site.urls)),
 )
 
