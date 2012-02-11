@@ -1,5 +1,6 @@
 # testing
 nose==1.0.0
+django_nose==0.1.3
 coverage==3.4
 specloud==0.4.2
 -e git+git://github.com/cobrateam/splinter.git#egg=splinter
