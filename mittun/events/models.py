@@ -12,7 +12,6 @@ class Event(models.Model):
     location = models.CharField(max_length=100)
     address = models.CharField(max_length=250)
     slug = models.SlugField()
-    logo = models.ImageField(upload_to='event_logo', blank=True, default='')
 
     def __unicode__(self):
         return self.name

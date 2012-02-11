@@ -29,9 +29,6 @@ class EventsModelsTestCase(TestCase):
     def test_should_have_the_field_address(self):
         self.assertFieldIn('address', Event)
 
-    def test_should_have_the_field_logo(self):
-        self.assertFieldIn('logo', Event)
-
     def assertFieldIn(self, field_name, model):
         self.assertIn(field_name, [field.name for field in model._meta.fields])
 
