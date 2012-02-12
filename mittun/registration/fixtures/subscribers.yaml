@@ -1,0 +1,6 @@
+- model: registration.Subscriber
+  pk: 1
+  fields:
+    name: Francisco Souza
+    email: f@souza.cc
+    subscription_date: 2012-02-12 16:57:00
