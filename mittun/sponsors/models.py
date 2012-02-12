@@ -16,3 +16,6 @@ class Sponsor(models.Model):
     url = models.URLField()
     category = models.ForeignKey(Category)
     logo = models.ImageField(upload_to='sponsors')
+
+    def __unicode__(self):
+        return self.name
