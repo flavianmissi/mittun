@@ -34,14 +34,13 @@ class SubscriberModelTestCase(unittest.TestCase):
         field = models.Subscriber._meta.get_field_by_name("email")[0]
         self.assertEquals(255, field.max_length)
 
-    def test_should_have_a_subscribe_date(self):
-        self.assertIn("subscribe_date", self.field_names)
+    def test_should_have_a_subscription_date(self):
+        self.assertIn("subscription_date", self.field_names)
 
-    def test_subscribe_date_should_be_a_DateTimeField(self):
-        field = models.Subscriber._meta.get_field_by_name("subscribe_date")[0]
+    def test_subscription_date_should_be_a_DateTimeField(self):
+        field = models.Subscriber._meta.get_field_by_name("subscription_date")[0]
         self.assertIsInstance(field, django_models.DateTimeField)
 
-    def test_subscribe_date_should_be_automatic_defined_on_creation(self):
-        field = models.Subscriber._meta.get_field_by_name("subscribe_date")[0]
+    def test_subscription_date_should_be_automatic_defined_on_creation(self):
+        field = models.Subscriber._meta.get_field_by_name("subscription_date")[0]
         self.assertTrue(field.auto_now_add)
-        
