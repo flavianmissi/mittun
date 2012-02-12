@@ -15,6 +15,11 @@ class ContactModelTestCase(ModelTestCase):
                                               email='contact email',
                                               sponsor=self.sponsor)
 
+    def tearDown(self):
+        self.category.delete()
+        self.sponsor.delete()
+        self.contact.delete()
+
     def test_should_have_a_type_field(self):
         self.assertIsFieldPresent('type', Contact)
 
