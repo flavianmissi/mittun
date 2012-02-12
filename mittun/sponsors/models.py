@@ -5,6 +5,9 @@ class Category(models.Model):
 
     name = models.CharField(max_length=120)
 
+    def __unicode__(self):
+        return self.name
+
 
 class Sponsor(models.Model):
 
