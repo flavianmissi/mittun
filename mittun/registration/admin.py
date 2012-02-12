@@ -16,7 +16,7 @@ class SubscriberAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def send_mail(self, request):
-        context = {"subscribers": models.Subscriber.objects.all(), 'form': forms.SendMailForm()}
+        context = {"subscribers": models.Subscriber.objects.all(), "form": forms.SendMailForm()}
         return response.TemplateResponse(request, "send_subscribers_mail.html", context)
 
 admin.site.register(models.Subscriber, SubscriberAdmin)
