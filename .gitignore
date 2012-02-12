@@ -1,6 +1,6 @@
-*.swp
-*.swo
+*.sw[a-z]
 *.pyc
 *.sqlite3
 .coverage
 settings_local.py
+.ropeproject
