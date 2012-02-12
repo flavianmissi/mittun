@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django.utils.unittest import TestCase
 
 from events.management.browser_helper import browser
@@ -25,7 +26,9 @@ class EventViewTestCase(BaseEventTestCase, TestCase):
         browser.fill('location', 'neverland')
         browser.fill('address', 'neverland, 1')
         browser.find_by_name('save').first.click()
+
         self.assertGreater(Event.objects.all().count(), events_count)
+
         Event.objects.filter(name='a really cool event').delete()
 
 
