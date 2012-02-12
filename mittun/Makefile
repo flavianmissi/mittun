@@ -10,3 +10,9 @@ clean:
 tests: clean
 	@echo "Running all tests..."
 	@python -Wall manage.py test
+
+functional: clean
+	@python -Wall manage.py test --exclude=acceptance
+
+acceptance: clean
+	@python -Wall manage.py acceptance

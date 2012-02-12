@@ -9,3 +9,4 @@ class BootstrapView(CreateView):
     model = Event
     form_class = BootstrapForm
     template_name = 'event_form.html'
+    success_url = '/'

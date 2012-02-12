@@ -7,3 +7,4 @@ class BootstrapForm(ModelForm):
 
     class Meta:
         model = Event
+        exclude = ('slug',)
