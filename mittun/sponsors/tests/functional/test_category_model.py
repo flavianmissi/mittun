@@ -1,4 +1,4 @@
-from sponsors.tests.unit.utils import ModelTestCase
+from mittun.tests.utils import ModelTestCase
 from sponsors.models import Category
 
 
