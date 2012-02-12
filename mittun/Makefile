@@ -12,7 +12,10 @@ tests: clean
 	@python -Wall manage.py test
 
 functional: clean
-	@python -Wall manage.py test --exclude=acceptance
+	@python -Wall manage.py test --exclude=acceptance -v 2
 
 acceptance: clean
-	@python -Wall manage.py acceptance
+	@python -Wall manage.py acceptance -v 2
+
+unit: clean
+	@python -Wall manage.py test --exclude=acceptance --exclude=functional -v 2
