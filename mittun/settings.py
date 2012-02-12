@@ -118,6 +118,7 @@ NOSE_ARGS = ['-s']
 TESTABLE_APPS = (
     'events',
     'registration',
+    'sponsors',
 )
 
 INSTALLED_APPS = TESTABLE_APPS

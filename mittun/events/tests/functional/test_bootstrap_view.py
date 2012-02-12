@@ -1,5 +1,7 @@
-from django.test import TestCase, RequestFactory, Client
+from datetime import datetime
+
 from django.core.urlresolvers import reverse
+from django.test import TestCase, RequestFactory, Client
 
 from events.forms import BootstrapForm
 from events.models import Event
@@ -36,3 +38,26 @@ class BootstrapViewUrlsTestCase(TestCase):
 
     def test_should_request_bootstrap_url_and_get_a_200_status_code(self):
         self.assertEqual(200, self.response.status_code)
+
+
+class BootstrapEditViewTestCase(TestCase):
+
+    def setUp(self):
+        self.event = Event.objects.create(
+            name='foo',
+            description='bar',
+            date=datetime.now(),
+            location='foo',
+            address='bar'
+        )
+        client = Client()
+        self.response = client.get(reverse('bootstrap'))
+
+    def tearDown(self):
+        self.event.delete()
+
+    def test_should_get_the_bootstrap_page_and_have_an_event_in_the_context(self):
+        self.assertIn('event', self.response.context_data.keys())
+
+    def test_should_get_the_bootstrap_page_get_a_rendered_event_to_edit(self):
+        self.assertEqual(self.event.name, self.response.context_data['event'].name)
