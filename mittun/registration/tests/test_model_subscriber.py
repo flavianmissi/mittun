@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-import unittest
-
+from django import test
 from django.db import models as django_models
 
 from registration import models
 
 
-class SubscriberModelTestCase(unittest.TestCase):
+class SubscriberModelTestCase(test.TestCase):
 
     @classmethod
     def setUpClass(cls):
