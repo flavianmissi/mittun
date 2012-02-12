@@ -44,3 +44,8 @@ class SubscriberModelTestCase(unittest.TestCase):
     def test_subscription_date_should_be_automatic_defined_on_creation(self):
         field = models.Subscriber._meta.get_field_by_name("subscription_date")[0]
         self.assertTrue(field.auto_now_add)
+
+    def test__unicode__shoul_return_the_Subscriber_name(self):
+        s = models.Subscriber(name=u"Mario")
+        self.assertEquals(u"Mario", unicode(s))
+        
