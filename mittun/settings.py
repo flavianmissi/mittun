@@ -116,6 +116,7 @@ TEMPLATE_DIRS = (
 TESTABLE_APPS = (
     'events',
     'registration',
+    'sponsors',
 )
 
 INSTALLED_APPS = TESTABLE_APPS
