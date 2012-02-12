@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from django import tests, forms as django_forms
+from django import test, forms as django_forms
 
 from registration import forms, models
 
 
-class SubscriberFormTestCase(tests.TestCase):
+class SubscriberFormTestCase(test.TestCase):
 
     def test_should_extend_ModelForm(self):
         assert issubclass(forms.SubscriberForm, django_forms.ModelForm)
