@@ -113,6 +113,8 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "events/templates"),
 )
 
+NOSE_ARGS = ['-s']
+
 TESTABLE_APPS = (
     'events',
     'registration',
