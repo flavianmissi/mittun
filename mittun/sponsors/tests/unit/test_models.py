@@ -14,5 +14,8 @@ class SponsorModelTestCase(TestCase):
     def test_model_should_have_a_logo(self):
         self.assertIsFieldPresent('logo')
 
+    def test_model_should_have_a_url(self):
+        self.assertIsFieldPresent('url')
+
     def assertIsFieldPresent(self, field):
         self.assertIn(field, Sponsor._meta.get_all_field_names())
