@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class Contact(models.Model):
+
+    type = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=100)
+    sponsor = models.ForeignKey("Sponsor")
+
+    def __unicode__(self):
+        return '%s - %s' % (self.name, self.email)
+
+
 class Category(models.Model):
 
     name = models.CharField(max_length=120)
