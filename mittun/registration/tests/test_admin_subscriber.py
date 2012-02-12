@@ -5,7 +5,7 @@ from django.core import management
 from django.template import response
 from django.test import client
 
-from registration import admin, models
+from registration import admin, forms, models
 
 
 class AdminSubscriberTestCase(test.TestCase):
@@ -45,3 +45,7 @@ class AdminSubscriberSendMailViewTestCase(test.TestCase):
     def test_should_render_the_template_with_all_subscribers_in_the_context(self):
         context = self.response.context_data
         self.assertEquals(list(models.Subscriber.objects.all()), list(context["subscribers"]))
+
+    def test_should_include_a_SendMailForm_instance_in_the_context(self):
+        context = self.response.context_data
+        self.assertIsInstance(context["form"], forms.SendMailForm)

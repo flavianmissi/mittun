@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns
 from django.contrib import admin
 from django.template import response
 
-from registration import models
+from registration import forms, models
 
 
 class SubscriberAdmin(admin.ModelAdmin):
@@ -16,7 +16,7 @@ class SubscriberAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def send_mail(self, request):
-        context = {"subscribers": models.Subscriber.objects.all()}
+        context = {"subscribers": models.Subscriber.objects.all(), 'form': forms.SendMailForm()}
         return response.TemplateResponse(request, "send_subscribers_mail.html", context)
 
 admin.site.register(models.Subscriber, SubscriberAdmin)
