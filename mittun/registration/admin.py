@@ -44,8 +44,10 @@ class SubscriberAdmin(admin.ModelAdmin):
         form = forms.SendMailForm(request.POST)
 
         if form.is_valid():
-            self.mail_sender.send_mail(form.data["subject"], [], form.data["body"])
-            context = {"subscribers": models.Subscriber.objects.all()}
+            subscribers = models.Subscriber.objects.all()
+            receivers = [s.email for s in subscribers]
+            self.mail_sender.send_mail(form.data["subject"], receivers, form.data["body"])
+            context = {"subscribers": subscribers}
             return response.TemplateResponse(request, "subscribers_mail_sent.html", context)
 
         context = {"form": form}

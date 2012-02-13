@@ -82,7 +82,8 @@ class AdminSubscriberSendMailWithValidData(test.TestCase):
         cls.sent = False
 
         def send(subject, receivers, body):
-            cls.sent = True
+            if receivers == ["f@souza.cc"]:
+                cls.sent = True
 
         factory = client.RequestFactory()
         request = factory.post("/admin/registration/subscriber/send-mail", cls.data)
