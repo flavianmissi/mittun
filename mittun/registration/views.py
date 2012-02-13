@@ -1,1 +1,29 @@
-# Create your views here.
+# -*- coding: utf-8 -*-
+from django import http
+from django.template import response
+from django.views.generic import base
+
+from registration import forms
+
+
+class Subscribe(base.View):
+
+    def __init__(self, *args, **kwargs):
+        super(Subscribe, self).__init__(*args, **kwargs)
+        if not hasattr(self, "success_url"):
+            self.success_url = "/successful-subscribed/"
+
+    def get(self, request):
+        template_name = getattr(self, "template_name", "subscribe.html")
+        context = {"form": forms.SubscriberForm()}
+        return response.TemplateResponse(request, template_name, context)
+
+    def post(self, request):
+        form = forms.SubscriberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return http.HttpResponseRedirect(self.success_url)
+
+        template_name = getattr(self, "template_name", "subscribe.html")
+        context = {"form": form}
+        return response.TemplateResponse(request, template_name, context)
