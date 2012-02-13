@@ -30,14 +30,3 @@ class BootstrapView(TemplateResponseMixin, BaseCreateUpdateView):
     form_class = BootstrapForm
     template_name = 'event_form.html'
     success_url = '/bootstrap'
-
-#     def get_queryset(self):
-#         return self.model.objects.all()[0]
-
-    # def get(self, request, *args, **kwargs):
-    #     self.set_object()
-
-    #     form_class = self.get_form_class()
-    #     form = self.get_form(form_class)
-
-    #     return self.render_to_response(self.get_context_data(form=form))
