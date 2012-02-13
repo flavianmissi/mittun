@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 from django.utils.unittest import TestCase
@@ -23,6 +24,7 @@ class EventViewTestCase(BaseEventTestCase, TestCase):
         browser.fill('name', 'a really cool event')
         browser.fill('description', 'this is a really cool event')
         browser.fill('date', '10/02/10')
+        browser.attach_file('logo', os.path.abspath('events/tests/data/batcat.jpg'))
         browser.find_by_name('save').first.click()
 
         self.assertGreater(Event.objects.all().count(), events_count)
@@ -33,13 +35,20 @@ class EventViewTestCase(BaseEventTestCase, TestCase):
 class EditEventTestCase(BaseEventTestCase, TestCase):
 
     def setUp(self):
-        Event.objects.create(
+        self.event = Event.objects.create(
             name='some event',
             description='some description',
             date=datetime.now(),
         )
         super(EditEventTestCase, self).setUp()
 
+    def tearDown(self):
+        self.event.delete()
+
     def test_should_edit_an_event(self):
-        field_name = browser.find_by_name('name').first.value
-        self.assertEqual('some event', field_name)
+        old_field_name = browser.find_by_name('name').first.value
+        browser.fill('name', 'new event name')
+        browser.find_by_name('save').first.click()
+        new_event_name = browser.find_by_name('name').first.value
+
+        self.assertNotEqual(new_event_name, old_field_name)
