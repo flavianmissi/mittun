@@ -17,6 +17,7 @@ class Event(models.Model):
     url = models.CharField(max_length=250, blank=True, help_text="You must include the full url path")
     date = models.DateField()
     slug = models.SlugField()
+    logo = models.ImageField(upload_to='event_logo')
 
     def __unicode__(self):
         return self.name

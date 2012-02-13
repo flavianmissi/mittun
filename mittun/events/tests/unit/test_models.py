@@ -1,30 +1,32 @@
 from datetime import date
-from django.db import IntegrityError
-from mittun.events.models import Event
 from nose.tools import raises, assert_equals
-from django.test import TestCase
+
+from django.db import IntegrityError
+
+from events.models import Event
+from mittun.tests.utils import ModelTestCase
 
 
-class EventsModelsTestCase(TestCase):
+class EventsModelsTestCase(ModelTestCase):
     fixtures = ['events.json']
 
     def test_should_have_the_field_name(self):
-        self.assertFieldIn('name', Event)
+        self.assertIsFieldPresent('name', Event)
 
     def test_should_have_the_field_slug(self):
-        self.assertFieldIn('slug', Event)
+        self.assertIsFieldPresent('slug', Event)
 
     def test_should_have_the_field_description(self):
-        self.assertFieldIn('description', Event)
+        self.assertIsFieldPresent('description', Event)
 
     def test_should_have_the_field_url(self):
-        self.assertFieldIn('url', Event)
+        self.assertIsFieldPresent('url', Event)
 
     def test_should_have_the_field_date(self):
-        self.assertFieldIn('date', Event)
+        self.assertIsFieldPresent('date', Event)
 
-    def assertFieldIn(self, field_name, model):
-        self.assertIn(field_name, [field.name for field in model._meta.fields])
+    def test_should_have_a_logo_field(self):
+        self.assertIsFieldPresent('logo', Event)
 
     @raises(IntegrityError)
     def test_should_not_save_without_an_event_date(self):
