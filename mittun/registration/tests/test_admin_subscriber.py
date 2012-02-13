@@ -34,7 +34,7 @@ class AdminSubscriberSendMailViewTestCase(test.TestCase):
         self.assertIsInstance(self.response, response.TemplateResponse)
 
     def test_show_mail_form_view_should_render_the_send_subscribers_email(self):
-        self.assertEquals("send_subscribers_mail.html", self.response.template_name)
+        self.assertEqual("send_subscribers_mail.html", self.response.template_name)
 
     def test_should_include_a_SendMailForm_instance_in_the_context(self):
         context = self.response.context_data
@@ -66,7 +66,7 @@ class AdminSubscriberSendMailPostInvalidDataTestCase(test.TestCase):
         key_function = lambda x: x[0]
         expected = sorted(self.data.items(), key=key_function)
         got = sorted(form.data.items(), key=key_function)
-        self.assertEquals(expected, got)
+        self.assertEqual(expected, got)
 
 
 class AdminSubscriberSendMailWithValidData(test.TestCase):
@@ -81,8 +81,8 @@ class AdminSubscriberSendMailWithValidData(test.TestCase):
         }
         cls.sent = False
 
-        def send(subject, receivers, body):
-            if receivers == ["f@souza.cc"]:
+        def send(subject, body, recipients):
+            if recipients == ["f@souza.cc"]:
                 cls.sent = True
 
         factory = client.RequestFactory()

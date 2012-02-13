@@ -10,7 +10,7 @@ class SubscriberFormTestCase(test.TestCase):
         assert issubclass(forms.SubscriberForm, django_forms.ModelForm)
 
     def test_should_use_Subscriber_as_model(self):
-        self.assertEquals(models.Subscriber, forms.SubscriberForm.Meta.model)
+        self.assertEqual(models.Subscriber, forms.SubscriberForm.Meta.model)
 
     def test_should_exclude_subscription_date(self):
         self.assertIn("subscription_date", forms.SubscriberForm.Meta.exclude)
