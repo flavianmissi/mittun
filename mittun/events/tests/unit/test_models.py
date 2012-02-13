@@ -19,9 +19,6 @@ class EventsModelsTestCase(ModelTestCase):
     def test_should_have_the_field_description(self):
         self.assertIsFieldPresent('description', Event)
 
-    def test_should_have_the_field_url(self):
-        self.assertIsFieldPresent('url', Event)
-
     def test_should_have_the_field_date(self):
         self.assertIsFieldPresent('date', Event)
 
@@ -30,7 +27,7 @@ class EventsModelsTestCase(ModelTestCase):
 
     @raises(IntegrityError)
     def test_should_not_save_without_an_event_date(self):
-        event = Event(name="", description="Teste", url="none.com")
+        event = Event(name="", description="Teste")
         event.save()
 
     @raises(IntegrityError)
