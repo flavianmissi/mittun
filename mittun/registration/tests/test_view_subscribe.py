@@ -12,18 +12,18 @@ class SubscribeViewTestCase(test.TestCase):
     def setUp(self):
         factory = client.RequestFactory()
         self.request = factory.get("/subscribe")
-        self.view = views.Subscribe()
+        self.view = views.SubscribeView()
 
     def test_should_store_a_success_url(self):
-        view = views.Subscribe(success_url="/teste/")
+        view = views.SubscribeView(success_url="/teste/")
         self.assertEqual("/teste/", view.success_url)
 
     def test_should_use_a_default_value_for_success_url(self):
-        view = views.Subscribe()
+        view = views.SubscribeView()
         self.assertEqual("/successful-subscribed/", view.success_url)
 
     def test_should_extend_base_View(self):
-        assert issubclass(views.Subscribe, base.View)
+        assert issubclass(views.SubscribeView, base.View)
 
     def test_get_method_should_return_a_TemplateResponse_instance(self):
         r = self.view.get(self.request)
@@ -53,7 +53,7 @@ class SubscribeViewWithInvalidDataTestCase(test.TestCase):
         }
         factory = client.RequestFactory()
         self.request = factory.post("/subscribers", self.data)
-        self.view = views.Subscribe()
+        self.view = views.SubscribeView()
 
     def test_should_return_TemplateResponse(self):
         r = self.view.post(self.request)
@@ -87,7 +87,7 @@ class SubscribeWithValidDataTestCase(test.TestCase):
 
         factory = client.RequestFactory()
         request = factory.post("/subscribe", cls.data)
-        cls.view = views.Subscribe()
+        cls.view = views.SubscribeView()
         cls.response = cls.view.post(request)
 
     @classmethod

@@ -6,10 +6,10 @@ from django.views.generic import base
 from registration import forms
 
 
-class Subscribe(base.View):
+class SubscribeView(base.View):
 
     def __init__(self, *args, **kwargs):
-        super(Subscribe, self).__init__(*args, **kwargs)
+        super(SubscribeView, self).__init__(*args, **kwargs)
         if not hasattr(self, "success_url"):
             self.success_url = "/successful-subscribed/"
 
