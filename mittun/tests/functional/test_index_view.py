@@ -17,8 +17,6 @@ class IndexViewTestCase(TestCase):
             name= 'Dojo',
             description= 'Dojo',
             date= date.today(),
-            location= 'location',
-            address= 'address'
         )
 
     def tearDown(self):
@@ -31,7 +29,3 @@ class IndexViewTestCase(TestCase):
     def test_index_view_should_use_index_template(self):
         response = IndexView.as_view()(self.request)
         self.assertTrue('index.html' in response.template_name)
-
-    def test_index_must_be_called_event_in_context(self):
-        response = IndexView.as_view()(self.request)
-        self.assertTrue('event' in response.context_data)

@@ -23,8 +23,6 @@ class EventViewTestCase(BaseEventTestCase, TestCase):
         browser.fill('name', 'a really cool event')
         browser.fill('description', 'this is a really cool event')
         browser.fill('date', '10/02/10')
-        browser.fill('location', 'neverland')
-        browser.fill('address', 'neverland, 1')
         browser.find_by_name('save').first.click()
 
         self.assertGreater(Event.objects.all().count(), events_count)
@@ -39,8 +37,6 @@ class EditEventTestCase(BaseEventTestCase, TestCase):
             name='some event',
             description='some description',
             date=datetime.now(),
-            location='some location',
-            address='some address'
         )
         super(EditEventTestCase, self).setUp()
 

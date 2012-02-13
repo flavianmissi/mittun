@@ -17,8 +17,6 @@ class AboutsViewTestCase(TestCase):
             name='Dojo',
             description='Dojo is a ...',
             date=date.today(),
-            location='location',
-            address='address'
         )
 
     def tearDown(self):
@@ -33,8 +31,6 @@ class AboutsViewTestCase(TestCase):
             name='foo',
             description='bar',
             date=date.today(),
-            location='location',
-            address='foo bar'
         )
 
         response = AboutView.as_view()(self.request)

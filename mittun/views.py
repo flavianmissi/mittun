@@ -5,13 +5,8 @@ from events.models import Event
 
 class IndexView(TemplateView):
 
-    model = Event
     template_name = 'index.html'
-    context_object_name = 'event'
 
-    def get_context_data(self, **kwargs):
-        kwargs['event'] = self.model.objects.all()[0]
-        return kwargs
 
 class AboutView(TemplateView):
 

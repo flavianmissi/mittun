@@ -47,8 +47,6 @@ class BootstrapEditViewTestCase(TestCase):
             name='foo',
             description='bar',
             date=datetime.now(),
-            location='foo',
-            address='bar'
         )
         client = Client()
         self.response = client.get(reverse('bootstrap'))
