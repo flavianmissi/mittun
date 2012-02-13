@@ -1,3 +1,5 @@
+# coding: utf8
+
 import os
 from datetime import datetime
 
@@ -22,7 +24,7 @@ class EventViewTestCase(BaseEventTestCase, TestCase):
     def test_should_add_an_event(self):
         events_count = Event.objects.all().count()
         browser.fill('name', 'a really cool event')
-        browser.fill('description', 'this is a really cool event')
+        browser.fill('description_en_us', 'this is a really cool event')
         browser.fill('date', '10/02/10')
         browser.attach_file('logo', os.path.abspath('events/tests/data/batcat.jpg'))
         browser.find_by_name('save').first.click()
@@ -37,7 +39,7 @@ class EditEventTestCase(BaseEventTestCase, TestCase):
     def setUp(self):
         self.event = Event.objects.create(
             name='some event',
-            description='some description',
+            description_en_us='some description',
             date=datetime.now(),
         )
         super(EditEventTestCase, self).setUp()

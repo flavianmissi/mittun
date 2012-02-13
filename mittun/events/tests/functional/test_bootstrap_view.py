@@ -45,7 +45,7 @@ class BootstrapEditViewTestCase(TestCase):
     def setUp(self):
         self.event = Event.objects.create(
             name='foo',
-            description='bar',
+            description_en_us='bar',
             date=datetime.now(),
         )
         client = Client()
