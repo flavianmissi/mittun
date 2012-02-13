@@ -20,7 +20,7 @@ class SubscriberModelTestCase(test.TestCase):
 
     def test_name_should_have_at_most_255_characters(self):
         field = models.Subscriber._meta.get_field_by_name("name")[0]
-        self.assertEquals(255, field.max_length)
+        self.assertEqual(255, field.max_length)
 
     def test_should_have_an_email(self):
         self.assertIn("email", self.field_names)
@@ -31,7 +31,7 @@ class SubscriberModelTestCase(test.TestCase):
 
     def test_email_should_have_at_most_255_characters(self):
         field = models.Subscriber._meta.get_field_by_name("email")[0]
-        self.assertEquals(255, field.max_length)
+        self.assertEqual(255, field.max_length)
 
     def test_should_have_a_subscription_date(self):
         self.assertIn("subscription_date", self.field_names)
@@ -46,5 +46,5 @@ class SubscriberModelTestCase(test.TestCase):
 
     def test__unicode__shoul_return_the_Subscriber_name(self):
         s = models.Subscriber(name=u"Mario")
-        self.assertEquals(u"Mario", unicode(s))
+        self.assertEqual(u"Mario", unicode(s))
         

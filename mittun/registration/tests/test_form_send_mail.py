@@ -18,7 +18,7 @@ class SendMailFormTestCase(test.TestCase):
 
     def test_subject_should_have_at_most_300_characters(self):
         field = forms.SendMailForm.base_fields["subject"]
-        self.assertEquals(300, field.max_length)
+        self.assertEqual(300, field.max_length)
 
     def test_should_have_a_body_field(self):
         self.assertIn("body", forms.SendMailForm.base_fields)
@@ -29,7 +29,7 @@ class SendMailFormTestCase(test.TestCase):
 
     def test_body_should_have_at_most_5000_characters(self):
         field = forms.SendMailForm.base_fields["body"]
-        self.assertEquals(5000, field.max_length)
+        self.assertEqual(5000, field.max_length)
 
     def test_body_should_use_the_Textarea_widget(self):
         field = forms.SendMailForm.base_fields["body"]

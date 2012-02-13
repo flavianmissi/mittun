@@ -28,10 +28,10 @@ class MailSenderTestCase(test.TestCase):
         self.email = self.sender.build_message(self.subject, self.body, self.recipients)
 
     def test_should_build_an_EmailMessage_instance(self):
-        self.assertEquals(self.recipients, self.email.recipients())
+        self.assertEqual(self.recipients, self.email.recipients())
 
     def test_should_use_the_setting_DEFAULT_FROM_EMAIL_as_the_email_sender(self):
-        self.assertEquals(settings.DEFAULT_FROM_EMAIL, self.email.from_email)
+        self.assertEqual(settings.DEFAULT_FROM_EMAIL, self.email.from_email)
 
     def test_should_send_the_email_using_the_EmailMessage_class(self):
         self.sender.build_message = lambda *args: EmailMessageMock(*args)
