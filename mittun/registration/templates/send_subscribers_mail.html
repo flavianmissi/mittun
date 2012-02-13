@@ -1,9 +1,21 @@
 {% extends "admin/base_site.html" %}
 
+{% block title %}Send mail to subscribers {{ block.super }}{% endblock %}
+
 {% block content_title %}
 <h1>Send mail to subscribers</h1>
 {% endblock %}
 
 {% block content %}
 <p>Please fill the form below to send a email message to all subscribers.</p>
+
+<form action="" method="post" accept-charset="utf-8">
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Send mail"/></td>
+        </tr>
+    </table>
+</form>
 {% endblock %}
