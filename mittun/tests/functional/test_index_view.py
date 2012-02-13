@@ -17,7 +17,6 @@ class IndexViewTestCase(TestCase):
             name= 'Dojo',
             description= 'Dojo',
             date= date.today(),
-            location= 'location',
             address= 'address'
         )
 
