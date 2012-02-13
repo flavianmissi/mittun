@@ -7,6 +7,7 @@ class Location(models.Model):
 
     title = models.CharField(max_length=150)
     event = models.ForeignKey("Event")
+    address = models.CharField(max_length=255)
 
 
 class Event(models.Model):
@@ -15,7 +16,6 @@ class Event(models.Model):
     description = models.CharField(max_length=200)
     url = models.CharField(max_length=250, blank=True, help_text="You must include the full url path")
     date = models.DateField()
-    address = models.CharField(max_length=250)
     slug = models.SlugField()
 
     def __unicode__(self):

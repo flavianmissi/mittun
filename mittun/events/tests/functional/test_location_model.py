@@ -9,3 +9,6 @@ class LocationModelTestCase(ModelTestCase):
 
     def test_should_have_an_event(self):
         self.assertIsFieldPresent('event', Location)
+
+    def test_should_have_an_address(self):
+        self.assertIsFieldPresent('address', Location)
