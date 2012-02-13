@@ -3,28 +3,14 @@ from django.conf.urls.defaults import patterns
 from django.contrib import admin
 from django.template import response
 
-from registration import forms, models
-
-
-class MailSender(object):
-
-    def send_mail(self, subject, receivers, body):
-        """
-        Simple interface to be mocked.
-
-        TODO:
-
-            - implement the mail sender
-            - move this class to another module
-        """
-        pass
+from registration import forms, helpers, models
 
 
 class SubscriberAdmin(admin.ModelAdmin):
 
     def __init__(self, *args, **kwargs):
         super(SubscriberAdmin, self).__init__(*args, **kwargs)
-        self.mail_sender = MailSender()
+        self.mail_sender = helpers.MailSender()
 
     def get_urls(self):
         urls = super(SubscriberAdmin, self).get_urls()
@@ -45,8 +31,8 @@ class SubscriberAdmin(admin.ModelAdmin):
 
         if form.is_valid():
             subscribers = models.Subscriber.objects.all()
-            receivers = [s.email for s in subscribers]
-            self.mail_sender.send_mail(form.data["subject"], receivers, form.data["body"])
+            recipients = [s.email for s in subscribers]
+            self.mail_sender.send_mail(form.data["subject"], form.data["body"], recipients)
             context = {"subscribers": subscribers}
             return response.TemplateResponse(request, "subscribers_mail_sent.html", context)
 
