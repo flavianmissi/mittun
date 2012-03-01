@@ -16,8 +16,11 @@ class EventsModelsTestCase(ModelTestCase):
     def test_should_have_the_field_slug(self):
         self.assertIsFieldPresent('slug', Event)
 
-    def test_should_have_the_field_description(self):
-        self.assertIsFieldPresent('description', Event)
+    def test_should_have_the_field_description_for_english(self):
+        self.assertIsFieldPresent('description_en_us', Event)
+
+    def test_should_have_the_field_description_for_portuguese(self):
+        self.assertIsFieldPresent('description_pt_br', Event)
 
     def test_should_have_the_field_date(self):
         self.assertIsFieldPresent('date', Event)
@@ -27,12 +30,12 @@ class EventsModelsTestCase(ModelTestCase):
 
     @raises(IntegrityError)
     def test_should_not_save_without_an_event_date(self):
-        event = Event(name="", description="Teste")
+        event = Event(name="", description_en_us="Teste")
         event.save()
 
     @raises(IntegrityError)
     def test_should_not_save_without_a_name(self):
-        event = Event(name=None, description="Teste", date=date.today())
+        event = Event(name=None, description_en_us="Teste", date=date.today())
         event.save()
 
     def test_should_return_the_name_of_the_event_when_call_an_event_directly(self):
