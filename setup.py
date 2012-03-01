@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from mittun import __version__
 
-README = open('README.markdown').read()
+README = open('README.rst').read()
 
 setup(name="mittun",
       version=__version__,
