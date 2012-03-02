@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns
 from django.contrib import admin
 from django.template import response
 
-from registration import forms, helpers, models
+from mittun.registration import forms, helpers, models
 
 
 class SubscriberAdmin(admin.ModelAdmin):
@@ -39,4 +39,6 @@ class SubscriberAdmin(admin.ModelAdmin):
         context = {"form": form}
         return response.TemplateResponse(request, "send_subscribers_mail.html", context)
 
-admin.site.register(models.Subscriber, SubscriberAdmin)
+
+if models.Subscriber not in admin.site._registry:
+    admin.site.register(models.Subscriber, SubscriberAdmin)

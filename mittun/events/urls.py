@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 
-from events.views import BootstrapView
+from mittun.events.views import BootstrapView
 
 
 urlpatterns = patterns('',

@@ -3,9 +3,9 @@ from datetime import datetime
 from django.core.urlresolvers import reverse
 from django.test import TestCase, RequestFactory, Client
 
-from events.forms import BootstrapForm
-from events.models import Event
-from events.views import BootstrapView
+from mittun.events.forms import BootstrapForm
+from mittun.events.models import Event
+from mittun.events.views import BootstrapView
 
 
 class BootstrapViewTestCase(TestCase):

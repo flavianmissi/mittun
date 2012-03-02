@@ -1,5 +1,5 @@
 from mittun.tests.utils import ModelTestCase
-from sponsors.models import Contact, Sponsor, Category
+from mittun.sponsors.models import Contact, Sponsor, Category
 
 
 class ContactModelTestCase(ModelTestCase):

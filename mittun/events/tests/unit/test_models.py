@@ -3,7 +3,7 @@ from nose.tools import raises, assert_equals
 
 from django.db import IntegrityError
 
-from events.models import Event
+from mittun.events.models import Event
 from mittun.tests.utils import ModelTestCase
 
 

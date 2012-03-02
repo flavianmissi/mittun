@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from events.models import Location
+from mittun.events.models import Location
 
 
 class LocationAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Location, LocationAdmin)
+if Location not in admin.site._registry:
+    admin.site.register(Location, LocationAdmin)

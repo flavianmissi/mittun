@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from events.forms import BootstrapForm
-from events.models import Event
+from mittun.events.forms import BootstrapForm
+from mittun.events.models import Event
 
 
 class BootstrapFormTestCase(TestCase):

@@ -5,7 +5,7 @@ from django.core import management
 from django.template import response
 from django.test import client
 
-from registration import admin, forms, models
+from mittun.registration import admin, forms, models
 
 
 class AdminSubscriberTestCase(test.TestCase):

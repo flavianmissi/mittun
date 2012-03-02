@@ -6,7 +6,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 
 from mittun.views import IndexView
-from events.models import Event
+from mittun.events.models import Event
 
 
 class IndexViewTestCase(TestCase):

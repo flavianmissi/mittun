@@ -5,8 +5,8 @@ from datetime import datetime
 
 from django.utils.unittest import TestCase
 
-from events.management.browser_helper import browser
-from events.models import Event
+from mittun.events.management.browser_helper import browser
+from mittun.events.models import Event
 
 
 class BaseEventTestCase(object):

@@ -1,8 +1,8 @@
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
-from events.forms import BootstrapForm
-from events.models import Event
+from mittun.events.forms import BootstrapForm
+from mittun.events.models import Event
 
 
 class BaseCreateUpdateView(ModelFormMixin, ProcessFormView):

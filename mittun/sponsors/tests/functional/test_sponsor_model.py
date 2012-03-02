@@ -1,6 +1,5 @@
 from mittun.tests.utils import ModelTestCase
-
-from sponsors.models import Sponsor, Category
+from mittun.sponsors.models import Sponsor, Category
 
 
 class SponsorModelTestCase(ModelTestCase):

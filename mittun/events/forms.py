@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from events.models import Event
+from mittun.events.models import Event
 
 
 class BootstrapForm(ModelForm):

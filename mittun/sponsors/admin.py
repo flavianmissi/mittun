@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from sponsors.models import Sponsor, Category, Contact
+from mittun.sponsors.models import Sponsor, Category, Contact
 
 
 class ContactInline(admin.TabularInline):
@@ -22,6 +22,9 @@ class CategoryAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Contact, ContactAdmin)
-admin.site.register(Sponsor, SponsorAdmin)
-admin.site.register(Category, CategoryAdmin)
+if Contact not in admin.site._registry:
+    admin.site.register(Contact, ContactAdmin)
+if Sponsor not in admin.site._registry:
+    admin.site.register(Sponsor, SponsorAdmin)
+if Category not in admin.site._registry:
+    admin.site.register(Category, CategoryAdmin)

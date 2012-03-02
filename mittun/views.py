@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from events.models import Event
+from mittun.events.models import Event
 
 
 class IndexView(TemplateView):

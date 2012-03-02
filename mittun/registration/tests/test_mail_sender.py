@@ -3,7 +3,7 @@ from django import test
 from django.conf import settings
 from django.core import mail
 
-from registration import helpers
+from mittun.registration import helpers
 
 
 class EmailMessageMock(mail.EmailMessage):

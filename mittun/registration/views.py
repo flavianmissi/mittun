@@ -3,7 +3,7 @@ from django import http
 from django.template import response
 from django.views.generic import base
 
-from registration import forms
+from mittun.registration import forms
 
 
 class SubscribeView(base.View):

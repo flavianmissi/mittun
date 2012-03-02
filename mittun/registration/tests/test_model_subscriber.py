@@ -2,7 +2,7 @@
 from django import test
 from django.db import models as django_models
 
-from registration import models
+from mittun.registration import models
 
 
 class SubscriberModelTestCase(test.TestCase):

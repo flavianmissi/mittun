@@ -4,7 +4,7 @@ from django.template import response
 from django.test import client
 from django.views.generic import base
 
-from registration import forms, models, views
+from mittun.registration import forms, models, views
 
 
 class SubscribeViewTestCase(test.TestCase):

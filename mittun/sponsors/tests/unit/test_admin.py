@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib import admin
 
-from sponsors.models import Sponsor, Category, Contact
-from sponsors.admin import SponsorAdmin, CategoryAdmin, ContactAdmin, ContactInline
+from mittun.sponsors.models import Sponsor, Category, Contact
+from mittun.sponsors.admin import SponsorAdmin, CategoryAdmin, ContactAdmin, ContactInline
 
 
 class AdminTestCase(TestCase):

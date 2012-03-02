@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import test, forms as django_forms
 
-from registration import forms
+from mittun.registration import forms
 
 
 class SendMailFormTestCase(test.TestCase):

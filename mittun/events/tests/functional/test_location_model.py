@@ -1,5 +1,5 @@
 from mittun.tests.utils import ModelTestCase
-from events.models import Location
+from mittun.events.models import Location
 
 
 class LocationModelTestCase(ModelTestCase):
