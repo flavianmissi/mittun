@@ -5,3 +5,6 @@
 settings_local.py
 .ropeproject
 media/
+build/
+dist/
+mittun.egg-info
