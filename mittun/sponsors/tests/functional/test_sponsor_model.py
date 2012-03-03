@@ -5,10 +5,10 @@ from mittun.sponsors.models import Sponsor, Category
 class SponsorModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.category = Category.objects.create(name='test')
+        self.category = Category.objects.create(name_en_us='test')
         self.sponsor = Sponsor.objects.create(
             name='sponsor name',
-            description='sponsor description',
+            description_en_us='sponsor description',
             url='sponsorurl.com',
             category=self.category,
         )
@@ -20,8 +20,11 @@ class SponsorModelTestCase(ModelTestCase):
     def test_model_should_have_a_name_field(self):
         self.assertIsFieldPresent('name', Sponsor)
 
-    def test_model_should_have_a_description(self):
-        self.assertIsFieldPresent('description', Sponsor)
+    def test_model_should_have_a_en_us_description(self):
+        self.assertIsFieldPresent('description_en_us', Sponsor)
+
+    def test_model_should_have_a_pt_br_description(self):
+        self.assertIsFieldPresent('description_pt_br', Sponsor)
 
     def test_model_should_have_a_logo(self):
         self.assertIsFieldPresent('logo', Sponsor)
