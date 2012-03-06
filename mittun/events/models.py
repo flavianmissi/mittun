@@ -15,7 +15,7 @@ class Event(models.Model):
     __metaclass__ = TransMeta
 
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=200)
+    description = models.TextField(max_length=200)
     date = models.DateField()
     slug = models.SlugField()
     logo = models.ImageField(upload_to='event_logo')
