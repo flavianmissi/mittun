@@ -1,5 +1,7 @@
 from django.db import models
 
+from transmeta import TransMeta
+
 
 class Contact(models.Model):
 
@@ -13,20 +15,28 @@ class Contact(models.Model):
 
 
 class Category(models.Model):
+    __metaclass__ = TransMeta
 
     name = models.CharField(max_length=120)
+
+    class Meta:
+        translate = ('name', )
 
     def __unicode__(self):
         return self.name
 
 
 class Sponsor(models.Model):
+    __metaclass__ = TransMeta
 
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=255)
     url = models.URLField()
     category = models.ForeignKey(Category)
     logo = models.ImageField(upload_to='sponsors')
+
+    class Meta:
+        translate = ('description', )
 
     def __unicode__(self):
         return self.name
