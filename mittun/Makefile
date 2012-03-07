@@ -9,13 +9,10 @@ clean:
 
 tests: clean
 	@echo "Running all tests..."
-	@python -Wall manage.py test
+	@python -Wall manage.py test -v 2
 
 functional: clean
 	@python -Wall manage.py test --exclude=acceptance -v 2
-
-acceptance: clean
-	@python -Wall manage.py acceptance -v 2
 
 unit: clean
 	@python -Wall manage.py test --exclude=acceptance --exclude=functional -v 2
