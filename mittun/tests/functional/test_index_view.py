@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from datetime import date
-
 from django.test import TestCase
 from django.test.client import RequestFactory
 
@@ -16,7 +14,6 @@ class IndexViewTestCase(TestCase):
         self.event = Event.objects.create(
             name= 'Dojo',
             description= 'Dojo',
-            date= date.today(),
         )
 
     def tearDown(self):

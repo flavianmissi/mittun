@@ -1,7 +1,5 @@
 #-*- coding: utf-8 -*-
 
-from datetime import date
-
 from django.test import TestCase
 from django.test.client import RequestFactory
 
@@ -16,7 +14,6 @@ class AboutsViewTestCase(TestCase):
         self.event = Event.objects.create(
             name='Dojo',
             description='Dojo is a ...',
-            date=date.today(),
         )
 
     def tearDown(self):
@@ -30,7 +27,6 @@ class AboutsViewTestCase(TestCase):
         event2 = Event.objects.create(
             name='foo',
             description='bar',
-            date=date.today(),
         )
 
         response = AboutView.as_view()(self.request)
@@ -43,7 +39,7 @@ class AboutsViewTestCase(TestCase):
         self.assertTrue('about.html' in response.template_name)
 
     def test_context_object_must_be_called_event(self):
-        response = AboutView.as_view()(self.request, slug=self.event.slug)
+        response = AboutView.as_view()(self.request)
         self.assertTrue('event' in response.context_data().keys())
 
     def text_context_object_must_have_an_instance_of_event_model(self):
