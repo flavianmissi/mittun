@@ -1,3 +1,5 @@
+from django.db import models
+
 from mittun.tests.utils import ModelTestCase
 from mittun.sponsors.models import Sponsor, Category
 
@@ -25,6 +27,9 @@ class SponsorModelTestCase(ModelTestCase):
 
     def test_model_should_have_a_pt_br_description(self):
         self.assertIsFieldPresent('description_pt_br', Sponsor)
+
+    def test_description_should_be_a_text_field(self):
+        self.assertIsInstance(self.sponsor._meta._name_map['description_en_us'][0], models.TextField)
 
     def test_model_should_have_a_logo(self):
         self.assertIsFieldPresent('logo', Sponsor)

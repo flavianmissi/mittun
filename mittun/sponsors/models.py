@@ -30,7 +30,7 @@ class Sponsor(models.Model):
     __metaclass__ = TransMeta
 
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=255)
+    description = models.TextField(max_length=255)
     url = models.URLField()
     category = models.ForeignKey(Category)
     logo = models.ImageField(upload_to='sponsors')
