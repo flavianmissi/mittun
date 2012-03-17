@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib import admin
 
 from mittun.events.models import Location, Event
-from mittun.events.admin import LocationAdmin
+from events.admin import LocationAdmin
 
 
 class AdminTestCase(TestCase):
