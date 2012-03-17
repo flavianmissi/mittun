@@ -36,11 +36,11 @@ class AboutsViewTestCase(TestCase):
 
     def test_details_view_should_use_about_template(self):
         response = AboutView.as_view()(self.request)
-        self.assertTrue('about.html' in response.template_name)
+        self.assertIn('about.html', response.template_name)
 
     def test_context_object_must_be_called_event(self):
         response = AboutView.as_view()(self.request)
-        self.assertTrue('event' in response.context_data().keys())
+        self.assertIn('event', response.context_data().keys())
 
     def text_context_object_must_have_an_instance_of_event_model(self):
         response = AboutView.as_view()(self.request)
