@@ -10,10 +10,6 @@ Install via pip::
 
     $ pip install mittun
 
-To create an event, run your local server and go to http://localhost:8000/bootstrap
-Fill the informations about your event, and submit.
-
-
 Bootstrap your environment
 --------------------------
 
