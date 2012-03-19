@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib import admin
 
-from mittun.sponsors.models import Sponsor, Category, Contact
-from mittun.sponsors.admin import SponsorAdmin, CategoryAdmin, ContactAdmin, ContactInline
+from mittun.sponsors.models import Sponsor, Category, Contact, Job
+from mittun.sponsors.admin import SponsorAdmin, CategoryAdmin, ContactAdmin, ContactInline, JobAdmin
 
 
 class AdminTestCase(TestCase):
@@ -21,6 +21,9 @@ class AdminTestCase(TestCase):
 
     def test_should_register_contact_model_with_ContactAdmin_class(self):
         self.assertIsInstance(admin.site._registry[Contact], ContactAdmin)
+
+    def test_should_register_job_model_with_JobAdmin_class(self):
+        self.assertIsInstance(admin.site._registry[Job], JobAdmin)
 
 
 class ContactInlineTestCase(TestCase):

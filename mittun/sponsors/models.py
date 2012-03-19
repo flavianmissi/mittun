@@ -41,3 +41,13 @@ class Sponsor(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Job(models.Model):
+
+    company = models.ForeignKey(Sponsor)
+    title = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    description = models.TextField(validators=[MaxLengthValidator(600)])
+    web_site = models.CharField(max_length=50, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+
