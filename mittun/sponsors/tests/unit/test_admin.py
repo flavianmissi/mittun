@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib import admin
 
-from mittun.sponsors.models import Sponsor, Category, Contact, Job
-from mittun.sponsors.admin import SponsorAdmin, CategoryAdmin, ContactAdmin, ContactInline, JobAdmin
+from mittun.sponsors.models import Sponsor, Category, Contact, Job, Requirement, Responsibility, Bonus
+from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline
 
 
 class AdminTestCase(TestCase):
@@ -16,14 +16,20 @@ class AdminTestCase(TestCase):
     def test_should_register_category_model(self):
         self.assertIn(Category, admin.site._registry)
 
-    def test_should_register_category_model_with_CategoryAdmin_class(self):
-        self.assertIsInstance(admin.site._registry[Category], CategoryAdmin)
-
     def test_should_register_contact_model_with_ContactAdmin_class(self):
         self.assertIsInstance(admin.site._registry[Contact], ContactAdmin)
 
-    def test_should_register_job_model_with_JobAdmin_class(self):
-        self.assertIsInstance(admin.site._registry[Job], JobAdmin)
+    def test_should_register_job_model(self):
+        self.assertIn(Job, admin.site._registry)
+
+    def test_should_register_requirement_model(self):
+        self.assertIn(Requirement, admin.site._registry)
+
+    def test_should_register_responsibility_model(self):
+        self.assertIn(Responsibility, admin.site._registry)
+
+    def test_should_register_bonus_model(self):
+        self.assertIn(Bonus, admin.site._registry)
 
 
 class ContactInlineTestCase(TestCase):
