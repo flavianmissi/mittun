@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxLengthValidator
+from django.contrib.auth.models import User
 
 from transmeta import TransMeta
 
@@ -35,6 +36,7 @@ class Sponsor(models.Model):
     url = models.URLField()
     category = models.ForeignKey(Category)
     logo = models.ImageField(upload_to='sponsors')
+    user = models.ForeignKey(User, null=True, blank=True)
 
     class Meta:
         translate = ('description', )

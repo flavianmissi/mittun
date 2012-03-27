@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from mittun.tests.utils import ModelTestCase
 from mittun.sponsors.models import Sponsor, Category
@@ -8,11 +9,13 @@ class SponsorModelTestCase(ModelTestCase):
 
     def setUp(self):
         self.category = Category.objects.create(name_en_us='test')
+        self.user = User.objects.create_user('derp', 'derp@derpmail.com', 'derppass')
         self.sponsor = Sponsor.objects.create(
             name='sponsor name',
             description_en_us='sponsor description',
             url='sponsorurl.com',
             category=self.category,
+            user = self.user,
         )
 
     def tearDown(self):
@@ -42,3 +45,6 @@ class SponsorModelTestCase(ModelTestCase):
 
     def test_should_return_sponsor_name_when_called_by_unicode(self):
         self.assertEqual('sponsor name', unicode(self.sponsor))
+
+    def test_model_should_have_a_user(self):
+        self.assertIsFieldPresent('user', Sponsor)
