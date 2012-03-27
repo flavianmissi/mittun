@@ -21,3 +21,12 @@ class JobModelTestCase(ModelTestCase):
     def test_job_should_have_email_field(self):
         self.assertIsFieldPresent("email", Job)
 
+    def test_job_should_have_responsabilities(self):
+        self.assertIsFieldPresent("responsabilities", Job)
+
+    def test_job_should_have_requirements(self):
+        self.assertIsFieldPresent("requirements", Job)
+
+    def test_job_should_have_bonuses(self):
+        self.assertIsFieldPresent("bonuses", Job)
+
