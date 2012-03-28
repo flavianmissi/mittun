@@ -13,3 +13,5 @@ class RequirementModelTestCase(ModelTestCase):
     def test_should_have_a_description(self):
         self.assertIsFieldPresent('description', Requirement)
 
+    def test_should_return_requirement_description_when_called_by_unicode(self):
+        self.assertEqual("test", unicode(self.requirement))

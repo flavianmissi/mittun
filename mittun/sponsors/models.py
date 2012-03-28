@@ -45,13 +45,22 @@ class Sponsor(models.Model):
 class Responsibility(models.Model):
     description = models.TextField(validators=[MaxLengthValidator(100)])
 
+    def __unicode__(self):
+        return self.description
+
 
 class Requirement(models.Model):
     description = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return self.description
+
 
 class Bonus(models.Model):
     description = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.description
 
 
 class Job(models.Model):
