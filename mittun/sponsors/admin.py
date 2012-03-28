@@ -19,6 +19,8 @@ class SponsorAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         qs = super(SponsorAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
         return qs.filter(user=request.user)
 
 
