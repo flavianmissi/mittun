@@ -17,6 +17,10 @@ class SponsorAdmin(admin.ModelAdmin):
         ContactInline,
     ]
 
+    def queryset(self, request):
+        qs = super(SponsorAdmin, self).queryset(request)
+        return qs.filter(user=request.user)
+
 
 if Contact not in admin.site._registry:
     admin.site.register(Contact, ContactAdmin)
