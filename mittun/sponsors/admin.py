@@ -23,6 +23,12 @@ class SponsorAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user=request.user)
 
+    def change_view(self, request, object_id, extra_context=None):
+        sponsor = Sponsor.objects.get(id=object_id)
+        if request.user == sponsor.user:
+            self.exclude = ('user',)
+        return super(SponsorAdmin, self).change_view(request, object_id, extra_context)
+
 
 if Contact not in admin.site._registry:
     admin.site.register(Contact, ContactAdmin)

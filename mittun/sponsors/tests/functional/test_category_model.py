@@ -5,7 +5,7 @@ from mittun.sponsors.models import Category
 class CategoryModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.category = Category.objects.create(name_en_us='diamond', name_pt_br='diamante')
+        self.category = Category.objects.create(name_en_us='diamond', name_pt_br='diamante', priority=1)
 
     def tearDown(self):
         self.category.delete()

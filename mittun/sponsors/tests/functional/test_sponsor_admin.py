@@ -14,12 +14,12 @@ class SponsorAdminTestCase(TestCase):
         self.user.user_permissions.add(*sponsor_permissions)
         self.user.save()
 
-        self.category = Category.objects.create(name="categorytest")
+        self.category = Category.objects.create(name="categorytest", priority=1)
         self.sponsor = Sponsor.objects.create(name="nametest",
-                               description="desctest",
-                               url="http://urlteste.com",
-                               category=self.category,
-                               user=self.user)
+                                              description="desctest",
+                                              url="http://urlteste.com",
+                                              category=self.category,
+                                              user=self.user)
         self.sponsor_without_user = Sponsor.objects.create(name="nametest2",
                                                            description="desctest2",
                                                            url="http://urlteste2.com",
@@ -50,3 +50,19 @@ class SponsorAdminTestCase(TestCase):
 
         self.assertIn(self.sponsor, response.context['cl'].result_list)
         self.assertIn(self.sponsor_without_user, response.context['cl'].result_list)
+
+    def test_should_not_has_user_field_if_user_is_sponsors_user(self):
+        response = self.client.get('/admin/sponsors/sponsor/%d/' % self.sponsor.id)
+        form = response.context[0]['adminform'].form
+        self.assertNotIn('user', form.fields.keys())
+
+    def test_should_have_user_field_if_user_is_not_sponsors_user(self):
+        self.sponsor.user = None
+        self.sponsor.save()
+        self.user.is_superuser = True
+        self.user.save()
+
+        response = self.client.get('/admin/sponsors/sponsor/%d/' % self.sponsor.id)
+        form = response.context[0]['adminform'].form
+        self.assertIn('user', form.fields.keys())
+

@@ -5,7 +5,7 @@ from mittun.sponsors.models import Contact, Sponsor, Category
 class ContactModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.category = Category.objects.create(name='test')
+        self.category = Category.objects.create(name='test', priority=1)
         self.sponsor = Sponsor.objects.create(name='sponsor',
                                               description='description',
                                               url='someurl.com',

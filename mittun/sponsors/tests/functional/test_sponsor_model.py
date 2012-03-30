@@ -8,7 +8,7 @@ from mittun.sponsors.models import Sponsor, Category
 class SponsorModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.category = Category.objects.create(name_en_us='test')
+        self.category = Category.objects.create(name_en_us='test', priority=1)
         self.user = User.objects.create_user('derp', 'derp@derpmail.com', 'derppass')
         self.sponsor = Sponsor.objects.create(
             name='sponsor name',
