@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 
 from mittun.tests.utils import ModelTestCase
 from mittun.sponsors.models import Sponsor, Category
@@ -48,3 +48,15 @@ class SponsorModelTestCase(ModelTestCase):
 
     def test_model_should_have_a_user(self):
         self.assertIsFieldPresent('user', Sponsor)
+
+    def test_user_should_be_staff(self):
+        user = User.objects.get(id=self.user.id)
+        self.assertTrue(user.is_staff)
+
+    def test_user_should_have_permissions(self):
+        user = User.objects.get(id=self.user.id)
+        permission_change = Permission.objects.get(codename='change_sponsor')
+        permission_delete = Permission.objects.get(codename='delete_sponsor')
+
+        self.assertIn(permission_change, user.user_permissions.all())
+        self.assertIn(permission_delete, user.user_permissions.all())

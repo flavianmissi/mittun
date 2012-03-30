@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MaxLengthValidator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 from transmeta import TransMeta
 
@@ -44,6 +46,17 @@ class Sponsor(models.Model):
     def __unicode__(self):
         return self.name
 
+
+@receiver(post_save, sender=Sponsor)
+def adicionar_permissoes(sender, **kwargs):
+    user = kwargs['instance'].user
+    if user:
+        permissions = Permission.objects.filter(codename__in=["change_sponsor", "delete_sponsor"])
+        user.is_staff = True
+        user.user_permissions.add(*permissions)
+        user.save()
+
+
 class Responsibility(models.Model):
     description = models.TextField(validators=[MaxLengthValidator(100)])
 
@@ -67,4 +80,3 @@ class Job(models.Model):
     responsabilities = models.ForeignKey(Responsibility)
     requirements = models.ForeignKey(Requirement)
     bonuses = models.ForeignKey(Bonus)
-
