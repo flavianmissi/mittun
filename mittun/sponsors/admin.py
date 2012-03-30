@@ -27,6 +27,8 @@ class SponsorAdmin(admin.ModelAdmin):
         sponsor = Sponsor.objects.get(id=object_id)
         if request.user == sponsor.user:
             self.exclude = ('user',)
+        else:
+            self.exclude = ()
         return super(SponsorAdmin, self).change_view(request, object_id, extra_context)
 
 
