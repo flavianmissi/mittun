@@ -22,6 +22,7 @@ class Category(models.Model):
     __metaclass__ = TransMeta
 
     name = models.CharField(max_length=120)
+    priority = models.IntegerField()
 
     class Meta:
         translate = ('name', )
