@@ -18,3 +18,6 @@ class CategoryModelTestCase(ModelTestCase):
 
     def test_should_return_name_when_called_by_unicode(self):
         self.assertEqual('diamond', unicode(self.category))
+
+    def test_should_have_a_priority_field(self):
+        self.assertIsFieldPresent('priority', Category)
