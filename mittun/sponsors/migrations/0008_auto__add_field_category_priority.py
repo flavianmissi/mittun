@@ -2,7 +2,7 @@
 from south.db import db
 from south.v2 import SchemaMigration
 
-from sponsors import models
+from mittun.sponsors import models
 
 
 class Migration(SchemaMigration):
