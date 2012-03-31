@@ -14,6 +14,12 @@ class ContactAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(sponsor__user=request.user)
 
+class JobAdmin(admin.ModelAdmin):
+    def queryset(self, request):
+        qs = super(JobAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(company__user=request.user)
 
 class SponsorAdmin(admin.ModelAdmin):
     exclude = []
@@ -53,7 +59,7 @@ if Category not in admin.site._registry:
     admin.site.register(Category)
 
 if Job not in admin.site._registry:
-    admin.site.register(Job)
+    admin.site.register(Job, JobAdmin)
 
 if Responsibility not in admin.site._registry:
     admin.site.register(Responsibility)
