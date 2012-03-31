@@ -57,6 +57,7 @@ class SponsorAdminTestCase(TestCase):
         self.assertNotIn('user', form.fields.keys())
 
     def test_should_have_user_field_if_user_is_not_sponsors_user(self):
+        self.client.get('/admin/sponsors/sponsor/%d/' % self.sponsor.id)
         self.sponsor.user = None
         self.sponsor.save()
         self.user.is_superuser = True
@@ -66,3 +67,14 @@ class SponsorAdminTestCase(TestCase):
         form = response.context[0]['adminform'].form
         self.assertIn('user', form.fields.keys())
 
+    def test_access_admin_with_superuser_after_access_add_sponsor_with_sponsors_user_should_have_user_field(self):
+        self.client.get('/admin/sponsors/sponsor/%d/' % self.sponsor.id)
+        self.sponsor.user = None
+        self.sponsor.save()
+        self.user.is_superuser = True
+        self.user.save()
+
+        response = self.client.get('/admin/sponsors/sponsor/add/')
+
+        form = response.context[0]['adminform'].form
+        self.assertIn('user', form.fields.keys())

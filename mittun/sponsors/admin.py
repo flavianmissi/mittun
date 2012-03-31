@@ -12,6 +12,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 class SponsorAdmin(admin.ModelAdmin):
+    exclude = []
 
     inlines = [
         ContactInline,
@@ -26,10 +27,16 @@ class SponsorAdmin(admin.ModelAdmin):
     def change_view(self, request, object_id, extra_context=None):
         sponsor = Sponsor.objects.get(id=object_id)
         if request.user == sponsor.user:
-            self.exclude = ('user',)
+            self.exclude.append('user')
         else:
-            self.exclude = ()
+            if 'user' in self.exclude:
+                self.exclude.remove('user')
         return super(SponsorAdmin, self).change_view(request, object_id, extra_context)
+
+    def add_view(self, request, extra_context=None):
+        if 'user' in self.exclude:
+            self.exclude.remove('user')
+        return super(SponsorAdmin, self).add_view(request, extra_context)
 
 
 if Contact not in admin.site._registry:
