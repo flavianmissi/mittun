@@ -78,3 +78,19 @@ class SponsorAdminTestCase(TestCase):
 
         form = response.context[0]['adminform'].form
         self.assertIn('user', form.fields.keys())
+
+    def test_add_new_sponsor_should_return_200(self):
+        data = {"name":"test123",
+                "description_en_us":"desctest",
+                "url":"http://urlteste.com",
+                "category":self.category.id,
+                "user":self.user.id,
+                "contact_set-MAX_NUM_FORMS": "",
+                "contact_set-TOTAL_FORMS": "0",
+                "contact_set-INITIAL_FORMS": "0"}
+
+        self.user.is_superuser = True
+        self.user.save()
+
+        response = self.client.post('/admin/sponsors/sponsor/add/', data)
+        self.assertEqual(200, response.status_code)

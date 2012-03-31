@@ -43,10 +43,10 @@ class SponsorAdmin(admin.ModelAdmin):
                 self.exclude.remove('user')
         return super(SponsorAdmin, self).change_view(request, object_id, extra_context)
 
-    def add_view(self, request, extra_context=None):
+    def add_view(self, request, form_url="", extra_context=None):
         if 'user' in self.exclude:
             self.exclude.remove('user')
-        return super(SponsorAdmin, self).add_view(request, extra_context)
+        return super(SponsorAdmin, self).add_view(request, form_url, extra_context)
 
 
 if Contact not in admin.site._registry:
