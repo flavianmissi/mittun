@@ -52,7 +52,8 @@ class Sponsor(models.Model):
 def adicionar_permissoes(sender, **kwargs):
     user = kwargs['instance'].user
     if user:
-        permissions = Permission.objects.filter(codename__in=["change_sponsor", "delete_sponsor"])
+        PERMISSIONS = ["change_sponsor", "delete_sponsor", "add_contact", "change_contact", "delete_contact", "add_job", "change_job", "delete_job"]
+        permissions = Permission.objects.filter(codename__in=PERMISSIONS)
         user.is_staff = True
         user.user_permissions.add(*permissions)
         user.save()

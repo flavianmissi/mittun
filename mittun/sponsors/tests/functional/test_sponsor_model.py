@@ -53,10 +53,30 @@ class SponsorModelTestCase(ModelTestCase):
         user = User.objects.get(id=self.user.id)
         self.assertTrue(user.is_staff)
 
-    def test_user_should_have_permissions(self):
+    def test_user_should_have_sponsor_permissions(self):
         user = User.objects.get(id=self.user.id)
         permission_change = Permission.objects.get(codename='change_sponsor')
         permission_delete = Permission.objects.get(codename='delete_sponsor')
 
+        self.assertIn(permission_change, user.user_permissions.all())
+        self.assertIn(permission_delete, user.user_permissions.all())
+
+    def test_user_should_have_contact_permissions(self):
+        user = User.objects.get(id=self.user.id)
+        permission_add = Permission.objects.get(codename='add_contact')
+        permission_change = Permission.objects.get(codename='change_contact')
+        permission_delete = Permission.objects.get(codename='delete_contact')
+
+        self.assertIn(permission_add, user.user_permissions.all())
+        self.assertIn(permission_change, user.user_permissions.all())
+        self.assertIn(permission_delete, user.user_permissions.all())
+
+    def test_user_should_have_job_permissions(self):
+        user = User.objects.get(id=self.user.id)
+        permission_add = Permission.objects.get(codename='add_job')
+        permission_change = Permission.objects.get(codename='change_job')
+        permission_delete = Permission.objects.get(codename='delete_job')
+
+        self.assertIn(permission_add, user.user_permissions.all())
         self.assertIn(permission_change, user.user_permissions.all())
         self.assertIn(permission_delete, user.user_permissions.all())
