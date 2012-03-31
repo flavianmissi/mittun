@@ -1,5 +1,4 @@
 from django.test import TestCase, Client
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Permission
 
 from mittun.sponsors.models import Sponsor, Category
@@ -30,6 +29,7 @@ class SponsorAdminTestCase(TestCase):
 
     def tearDown(self):
         self.sponsor.delete()
+        self.sponsor_without_user.delete()
         self.user.delete()
         self.category.delete()
 

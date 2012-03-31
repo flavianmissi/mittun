@@ -8,7 +8,11 @@ class ContactInline(admin.TabularInline):
 
 
 class ContactAdmin(admin.ModelAdmin):
-    pass
+    def queryset(self, request):
+        qs = super(ContactAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(sponsor__user=request.user)
 
 
 class SponsorAdmin(admin.ModelAdmin):
