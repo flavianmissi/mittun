@@ -6,9 +6,9 @@ from mittun.sponsors.models import Sponsor, Category, Contact
 
 class ContactAdminTestCase(TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.user = User.objects.create_user('siminino', 'siminino@simi.com', 'simipass')
-        self.user.is_staff = True
         contact_permissions = Permission.objects.filter(codename__in=['add_contact', 'change_contact', 'delete_contact'])
         self.user.user_permissions.add(*contact_permissions)
         self.user.save()
@@ -19,18 +19,30 @@ class ContactAdminTestCase(TestCase):
                                               url="http://urlteste.com",
                                               category=self.category,
                                               user=self.user)
-
         self.sponsor2 = Sponsor.objects.create(name="nametest2",
                                               description="desctest2",
                                               url="http://urlteste.com2",
                                               category=self.category)
-        self.contact = Contact.objects.create(type="typetest", name="nametest", email="emailtest@com", sponsor=self.sponsor)
-        self.contact_without_user = Contact.objects.create(type="typetest2", name="nametest2", email="emailtest@com2", sponsor=self.sponsor2)
+
+        self.contact = Contact.objects.create(type="typetest",
+                                              name="nametest",
+                                              email="emailtest@com",
+                                              sponsor=self.sponsor)
+        self.contact_without_user = Contact.objects.create(type="typetest2",
+                                                           name="nametest2",
+                                                           email="emailtest@com2",
+                                                           sponsor=self.sponsor2)
         self.client = Client()
+
+    def setUp(self):
+        self.user.is_superuser = False
+        self.user.is_staff = True
+        self.user.save()
         self.client.login(username='siminino', password='simipass')
         self.response = self.client.get('/admin/sponsors/contact/')
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         self.contact.delete()
         self.sponsor.delete()
         self.category.delete()

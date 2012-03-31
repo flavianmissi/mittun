@@ -4,7 +4,8 @@ from mittun.sponsors.models import Contact, Sponsor, Category
 
 class ContactModelTestCase(ModelTestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.category = Category.objects.create(name='test', priority=1)
         self.sponsor = Sponsor.objects.create(name='sponsor',
                                               description='description',
@@ -15,7 +16,8 @@ class ContactModelTestCase(ModelTestCase):
                                               email='contact email',
                                               sponsor=self.sponsor)
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         self.category.delete()
         self.sponsor.delete()
         self.contact.delete()

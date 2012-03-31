@@ -6,9 +6,9 @@ from mittun.sponsors.models import Sponsor, Category, Job, Responsibility, Requi
 
 class JobAdminTestCase(TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.user = User.objects.create_user('siminino', 'siminino@simi.com', 'simipass')
-        self.user.is_staff = True
         job_permissions = Permission.objects.filter(codename__in=['add_job', 'change_job', 'delete_job'])
         self.user.user_permissions.add(*job_permissions)
         self.user.save()
@@ -45,10 +45,16 @@ class JobAdminTestCase(TestCase):
                                       responsabilities=self.responsability)
 
         self.client = Client()
+
+    def setUp(self):
+        self.user.is_superuser = False
+        self.user.is_staff = True
+        self.user.save()
         self.client.login(username='siminino', password='simipass')
         self.response = self.client.get('/admin/sponsors/job/')
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         self.job.delete()
         self.job_without_user.delete()
         self.bonus.delete()

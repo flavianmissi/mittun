@@ -6,7 +6,8 @@ from mittun.sponsors.views import SponsorsView
 
 class SponsorsViewTestCase(TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.request = RequestFactory().get('sponsors')
         self.response = SponsorsView.as_view()(self.request)
 

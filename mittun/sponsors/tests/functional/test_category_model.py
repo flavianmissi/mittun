@@ -4,10 +4,12 @@ from mittun.sponsors.models import Category
 
 class CategoryModelTestCase(ModelTestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.category = Category.objects.create(name_en_us='diamond', name_pt_br='diamante', priority=1)
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         self.category.delete()
 
     def test_should_have_a_name_for_english(self):

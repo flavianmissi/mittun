@@ -6,9 +6,9 @@ from mittun.sponsors.models import Sponsor, Category
 
 class SponsorAdminTestCase(TestCase):
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.user = User.objects.create_user('siminino', 'siminino@simi.com', 'simipass')
-        self.user.is_staff = True
         sponsor_permissions = Permission.objects.filter(codename__contains='sponsor')
         self.user.user_permissions.add(*sponsor_permissions)
         self.user.save()
@@ -24,10 +24,17 @@ class SponsorAdminTestCase(TestCase):
                                                            url="http://urlteste2.com",
                                                            category=self.category)
         self.client = Client()
+
+
+    def setUp(self):
+        self.user.is_superuser = False
+        self.user.is_staff = True
+        self.user.save()
         self.client.login(username='siminino', password='simipass')
         self.response = self.client.get('/admin/sponsors/sponsor/')
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         self.sponsor.delete()
         self.sponsor_without_user.delete()
         self.user.delete()
@@ -80,11 +87,11 @@ class SponsorAdminTestCase(TestCase):
         self.assertIn('user', form.fields.keys())
 
     def test_add_new_sponsor_should_return_200(self):
-        data = {"name":"test123",
-                "description_en_us":"desctest",
-                "url":"http://urlteste.com",
-                "category":self.category.id,
-                "user":self.user.id,
+        data = {"name": "test123",
+                "description_en_us": "desctest",
+                "url": "http://urlteste.com",
+                "category": self.category.id,
+                "user": self.user.id,
                 "contact_set-MAX_NUM_FORMS": "",
                 "contact_set-TOTAL_FORMS": "0",
                 "contact_set-INITIAL_FORMS": "0"}

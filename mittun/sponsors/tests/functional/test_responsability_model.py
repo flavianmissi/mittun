@@ -12,4 +12,3 @@ class ResponsabilityModelTestCase(ModelTestCase):
 
     def test_should_have_a_description(self):
         self.assertIsFieldPresent('description', Responsibility)
-
