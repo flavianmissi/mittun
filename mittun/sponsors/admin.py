@@ -49,24 +49,10 @@ class SponsorAdmin(admin.ModelAdmin):
         return super(SponsorAdmin, self).add_view(request, form_url, extra_context)
 
 
-if Contact not in admin.site._registry:
-    admin.site.register(Contact, ContactAdmin)
-
-if Sponsor not in admin.site._registry:
-    admin.site.register(Sponsor, SponsorAdmin)
-
-if Category not in admin.site._registry:
-    admin.site.register(Category)
-
-if Job not in admin.site._registry:
-    admin.site.register(Job, JobAdmin)
-
-if Responsibility not in admin.site._registry:
-    admin.site.register(Responsibility)
-
-if Requirement not in admin.site._registry:
-    admin.site.register(Requirement)
-
-if Bonus not in admin.site._registry:
-    admin.site.register(Bonus)
-
+admin.site.register(Contact, ContactAdmin)
+admin.site.register(Sponsor, SponsorAdmin)
+admin.site.register(Category)
+admin.site.register(Job, JobAdmin)
+admin.site.register(Responsibility)
+admin.site.register(Requirement)
+admin.site.register(Bonus)

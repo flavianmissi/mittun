@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib import admin
 
 from mittun.sponsors.models import Sponsor, Category, Contact, Job, Requirement, Responsibility, Bonus
-from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline, JobAdmin
+from sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline, JobAdmin
 
 
 class AdminTestCase(TestCase):
