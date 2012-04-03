@@ -2,7 +2,8 @@ from django.test import TestCase
 from django.contrib import admin
 
 from mittun.sponsors.models import Sponsor, Category, Contact, Job, Requirement, Responsibility, Bonus
-from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline
+from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline, JobAdmin
+from mittun.sponsors.forms import JobForm
 
 
 class AdminTestCase(TestCase):
@@ -19,8 +20,11 @@ class AdminTestCase(TestCase):
     def test_should_register_contact_model_with_ContactAdmin_class(self):
         self.assertIsInstance(admin.site._registry[Contact], ContactAdmin)
 
-    def test_should_register_job_model(self):
-        self.assertIn(Job, admin.site._registry)
+    def test_should_register_job_admin(self):
+        self.assertIsInstance(admin.site._registry[Job], JobAdmin)
+
+    def test_job_admin_should_have_a_form_instance_for_JobForm(self):
+        self.assertEqual(JobAdmin.form, JobForm)
 
     def test_should_register_requirement_model(self):
         self.assertIn(Requirement, admin.site._registry)
