@@ -5,7 +5,8 @@ from mittun.sponsors.models import Requirement
 class RequirementModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.requirement = Requirement.objects.create(description='test')
+        job = self.create_job()
+        self.requirement = Requirement.objects.create(description='test', job=job)
 
     def tearDown(self):
         self.requirement.delete()

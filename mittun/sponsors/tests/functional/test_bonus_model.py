@@ -5,7 +5,8 @@ from mittun.sponsors.models import Bonus
 class BonusModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.bonus = Bonus.objects.create(description='test')
+        job = self.create_job()
+        self.bonus = Bonus.objects.create(description='test', job=job)
 
     def tearDown(self):
         self.bonus.delete()

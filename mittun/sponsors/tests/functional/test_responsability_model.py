@@ -5,7 +5,8 @@ from mittun.sponsors.models import Responsibility
 class ResponsabilityModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.responsibility = Responsibility.objects.create(description='test')
+        job = self.create_job()
+        self.responsibility = Responsibility.objects.create(description='test', job=job)
 
     def tearDown(self):
         self.responsibility.delete()
