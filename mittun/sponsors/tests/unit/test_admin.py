@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib import admin
 
 from mittun.sponsors.models import Sponsor, Category, Contact, Job, Requirement, Responsibility, Bonus
-from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline, JobAdmin
+from mittun.sponsors.admin import SponsorAdmin, ContactAdmin, ContactInline, JobAdmin, RequirementInline, ResponsibilityInline, BonusInline
 
 
 class AdminTestCase(TestCase):
@@ -30,6 +30,11 @@ class AdminTestCase(TestCase):
 
     def test_should_register_bonus_model(self):
         self.assertIn(Bonus, admin.site._registry)
+
+    def test_job_admin_should_have_requirement_responsibilities_and_bonuses_as_inline_models(self):
+        self.assertIn(RequirementInline, JobAdmin.inlines)
+        self.assertIn(ResponsibilityInline, JobAdmin.inlines)
+        self.assertIn(BonusInline, JobAdmin.inlines)
 
 
 class ContactInlineTestCase(TestCase):
