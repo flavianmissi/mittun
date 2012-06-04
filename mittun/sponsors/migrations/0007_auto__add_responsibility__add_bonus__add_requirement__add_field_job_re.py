@@ -30,13 +30,13 @@ class Migration(SchemaMigration):
         db.send_create_signal('sponsors', ['Requirement'])
 
         # Adding field 'Job.responsabilities'
-        db.add_column('sponsors_job', 'responsabilities', self.gf('django.db.models.fields.related.ForeignKey')(default='', to=orm['sponsors.Responsibility']), keep_default=False)
+        db.add_column('sponsors_job', 'responsabilities', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Responsibility']), keep_default=False)
 
         # Adding field 'Job.requirements'
-        db.add_column('sponsors_job', 'requirements', self.gf('django.db.models.fields.related.ForeignKey')(default='', to=orm['sponsors.Requirement']), keep_default=False)
+        db.add_column('sponsors_job', 'requirements', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Requirement']), keep_default=False)
 
         # Adding field 'Job.bonuses'
-        db.add_column('sponsors_job', 'bonuses', self.gf('django.db.models.fields.related.ForeignKey')(default='', to=orm['sponsors.Bonus']), keep_default=False)
+        db.add_column('sponsors_job', 'bonuses', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Bonus']), keep_default=False)
 
 
     def backwards(self, orm):

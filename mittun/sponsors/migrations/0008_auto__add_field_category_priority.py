@@ -2,27 +2,12 @@
 from south.db import db
 from south.v2 import SchemaMigration
 
-from mittun.sponsors import models
-
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        priorities = {
-            "Diamond": 0,
-            "Gold": 10,
-            "Silver": 20,
-            "Bronze": 30,
-            "Partner": 40,
-            "FOSS": 50,
-        }
-
         # Adding field 'Category.priority'
         db.add_column('sponsors_category', 'priority', self.gf('django.db.models.fields.IntegerField')(default=0), keep_default=False)
-
-        for category in models.Category.objects.all():
-            category.priority = priorities[category.name]
-            category.save()
 
     def backwards(self, orm):
 
