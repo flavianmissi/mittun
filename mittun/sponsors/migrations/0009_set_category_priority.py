@@ -9,6 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         priorities = {
             "Diamond": 0,
+            "Platinum": 5,
             "Gold": 10,
             "Silver": 20,
             "Bronze": 30,
@@ -17,7 +18,7 @@ class Migration(SchemaMigration):
         }
 
         for category in models.Category.objects.all():
-            category.priority = priorities[category.name]
+            category.priority = priorities.get(category.name, 1000)
             category.save()
 
     def backwards(self, orm):
