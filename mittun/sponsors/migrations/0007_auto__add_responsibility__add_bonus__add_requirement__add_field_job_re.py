@@ -1,13 +1,12 @@
 # encoding: utf-8
-import datetime
 from south.db import db
 from south.v2 import SchemaMigration
-from django.db import models
+
 
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        
+
         # Adding model 'Responsibility'
         db.create_table('sponsors_responsibility', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -30,17 +29,16 @@ class Migration(SchemaMigration):
         db.send_create_signal('sponsors', ['Requirement'])
 
         # Adding field 'Job.responsabilities'
-        db.add_column('sponsors_job', 'responsabilities', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Responsibility']), keep_default=False)
+        db.add_column('sponsors_job', 'responsabilities', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['sponsors.Responsibility']), keep_default=False)
 
         # Adding field 'Job.requirements'
-        db.add_column('sponsors_job', 'requirements', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Requirement']), keep_default=False)
+        db.add_column('sponsors_job', 'requirements', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['sponsors.Requirement']), keep_default=False)
 
         # Adding field 'Job.bonuses'
-        db.add_column('sponsors_job', 'bonuses', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sponsors.Bonus']), keep_default=False)
-
+        db.add_column('sponsors_job', 'bonuses', self.gf('django.db.models.fields.related.ForeignKey')(default=0, to=orm['sponsors.Bonus']), keep_default=False)
 
     def backwards(self, orm):
-        
+
         # Deleting model 'Responsibility'
         db.delete_table('sponsors_responsibility')
 
@@ -58,7 +56,6 @@ class Migration(SchemaMigration):
 
         # Deleting field 'Job.bonuses'
         db.delete_column('sponsors_job', 'bonuses_id')
-
 
     models = {
         'sponsors.bonus': {
