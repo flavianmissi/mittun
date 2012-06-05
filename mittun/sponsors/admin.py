@@ -34,19 +34,19 @@ class SponsorAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user=request.user)
 
-    def change_view(self, request, object_id, extra_context=None):
+    def change_view(self, request, object_id, *args, **kwargs):
         sponsor = Sponsor.objects.get(id=object_id)
         if request.user == sponsor.user:
             self.exclude.append('user')
         else:
             if 'user' in self.exclude:
                 self.exclude.remove('user')
-        return super(SponsorAdmin, self).change_view(request, object_id, extra_context)
+        return super(SponsorAdmin, self).change_view(request, object_id, *args, **kwargs)
 
-    def add_view(self, request, form_url="", extra_context=None):
+    def add_view(self, *args, **kwargs):
         if 'user' in self.exclude:
             self.exclude.remove('user')
-        return super(SponsorAdmin, self).add_view(request, form_url, extra_context)
+        return super(SponsorAdmin, self).add_view(*args, **kwargs)
 
 
 admin.site.register(Contact, ContactAdmin)
