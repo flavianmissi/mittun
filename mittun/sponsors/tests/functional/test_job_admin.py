@@ -25,24 +25,15 @@ class JobAdminTestCase(TestCase):
                                               url="http://urlteste.com2",
                                               category=self.category)
 
-        self.responsability = Responsibility.objects.create(description="description test")
-        self.requirement = Requirement.objects.create(description="description test")
-        self.bonus = Bonus.objects.create(description="description test")
-
         self.job = Job.objects.create(title="titletest",
                                       location="locationtest",
                                       description="description test",
-                                      company=self.sponsor,
-                                      bonuses=self.bonus,
-                                      requirements=self.requirement,
-                                      responsabilities=self.responsability)
+                                      company=self.sponsor,)
+
         self.job_without_user = Job.objects.create(title="titletest2",
                                       location="locationtest2",
                                       description="description test2",
-                                      company=self.sponsor2,
-                                      bonuses=self.bonus,
-                                      requirements=self.requirement,
-                                      responsabilities=self.responsability)
+                                      company=self.sponsor2,)
 
         self.client = Client()
 
@@ -57,9 +48,6 @@ class JobAdminTestCase(TestCase):
     def tearDownClass(self):
         self.job.delete()
         self.job_without_user.delete()
-        self.bonus.delete()
-        self.requirement.delete()
-        self.responsability.delete()
         self.sponsor.delete()
         self.sponsor2.delete()
         self.category.delete()

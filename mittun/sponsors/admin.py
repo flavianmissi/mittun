@@ -14,12 +14,6 @@ class ContactAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(sponsor__user=request.user)
 
-class JobAdmin(admin.ModelAdmin):
-    def queryset(self, request):
-        qs = super(JobAdmin, self).queryset(request)
-        if request.user.is_superuser:
-            return qs
-        return qs.filter(company__user=request.user)
 
 class SponsorAdmin(admin.ModelAdmin):
     exclude = []
@@ -49,6 +43,31 @@ class SponsorAdmin(admin.ModelAdmin):
         return super(SponsorAdmin, self).add_view(*args, **kwargs)
 
 
+class RequirementInline(admin.TabularInline):
+    model = Requirement
+
+
+class ResponsibilityInline(admin.TabularInline):
+    model = Responsibility
+
+
+class BonusInline(admin.TabularInline):
+    model = Bonus
+
+
+class JobAdmin(admin.ModelAdmin):
+    inlines = [
+        RequirementInline,
+        ResponsibilityInline,
+        BonusInline,
+    ]
+
+    def queryset(self, request):
+        qs = super(JobAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(company__user=request.user)
+
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Sponsor, SponsorAdmin)
 admin.site.register(Category)
@@ -56,3 +75,4 @@ admin.site.register(Job, JobAdmin)
 admin.site.register(Responsibility)
 admin.site.register(Requirement)
 admin.site.register(Bonus)
+

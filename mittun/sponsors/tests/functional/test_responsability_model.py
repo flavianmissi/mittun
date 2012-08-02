@@ -5,10 +5,14 @@ from mittun.sponsors.models import Responsibility
 class ResponsabilityModelTestCase(ModelTestCase):
 
     def setUp(self):
-        self.responsability = Responsibility.objects.create(description='test')
+        job = self.create_job()
+        self.responsibility = Responsibility.objects.create(description='test', job=job)
 
     def tearDown(self):
-        self.responsability.delete()
+        self.responsibility.delete()
 
     def test_should_have_a_description(self):
         self.assertIsFieldPresent('description', Responsibility)
+
+    def test_should_return_resposibility_description_when_called_by_unicode(self):
+        self.assertEqual("test", unicode(self.responsibility))

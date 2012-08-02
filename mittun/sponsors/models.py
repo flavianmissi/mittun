@@ -59,26 +59,35 @@ def adicionar_permissoes(sender, **kwargs):
         user.save()
 
 
-class Responsibility(models.Model):
-    description = models.TextField(validators=[MaxLengthValidator(100)])
-
-
-class Requirement(models.Model):
-    description = models.CharField(max_length=100)
-
-
-class Bonus(models.Model):
-    description = models.CharField(max_length=100)
-
-
 class Job(models.Model):
     title = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     description = models.TextField(validators=[MaxLengthValidator(600)])
     web_site = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-
     company = models.ForeignKey(Sponsor)
-    responsabilities = models.ForeignKey(Responsibility)
-    requirements = models.ForeignKey(Requirement)
-    bonuses = models.ForeignKey(Bonus)
+
+
+class Responsibility(models.Model):
+    description = models.TextField(validators=[MaxLengthValidator(100)])
+    job = models.ForeignKey(Job)
+
+    def __unicode__(self):
+        return self.description
+
+
+class Requirement(models.Model):
+    description = models.CharField(max_length=100)
+    job = models.ForeignKey(Job)
+
+    def __unicode__(self):
+        return self.description
+
+
+class Bonus(models.Model):
+    description = models.CharField(max_length=100)
+    job = models.ForeignKey(Job)
+
+    def __unicode__(self):
+        return self.description
+
