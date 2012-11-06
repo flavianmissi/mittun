@@ -9,6 +9,6 @@ PyYAML
 
 # production
 MySQL-Python==1.2.3
-django==1.3.1
+django==1.4.2
 South==0.7.3
 PIL==1.1.7
