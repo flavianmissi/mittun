@@ -5,7 +5,7 @@ coverage==3.4
 specloud==0.4.2
 splinter
 PyYAML
--e git+git://github.com/vbmendes/django-transmeta.git#egg=django-transmeta
+git+git://github.com/vbmendes/django-transmeta.git
 
 # production
 MySQL-Python==1.2.3
