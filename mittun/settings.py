@@ -3,8 +3,10 @@
 # Django settings for mittun project.
 
 import os
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+import sys
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+TESTING = 'test' in sys.argv[1:]
 DEBUG = True
 
 
@@ -142,7 +144,6 @@ INSTALLED_APPS += (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'south',
-    'django_nose',
 )
 
 SKIP_TESTS = (
@@ -181,3 +182,6 @@ try:
     from settings_local import *
 except ImportError:
     pass
+
+if TESTING:
+    INSTALLED_APPS += ('django_nose',)
